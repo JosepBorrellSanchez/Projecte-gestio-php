@@ -3,7 +3,7 @@
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Bootstrap Admin Template : Binary Admin</title>
+    <title>Gestió Talleres SALO</title>
 	  <!-- BOOTSTRAP STYLES-->
     <link href="<?php echo base_url();?>assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
@@ -20,61 +20,24 @@
    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
   <link href="//cdn.datatables.net/plug-ins/28e7751dbec/i18n/Catalan.json" rel="stylesheet">
   <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.dataTables.js');?>"></script>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-
-        
-        <script type="text/javascript">
-        
-        
-            $(document).ready(function() { 
-
-                        //$("#hola").val("vv");
-                
-                $("#provincias").change(function(){
-                   
-                  
-                    $.ajax({
-                    url:"http://localhost/recycling/index.php/welcome/buildDropCities",    
-                    data: {id: $(this).val()},
-                    type: "POST",
-                    success: function(data){
-                        
-                        $("#cityDrp").html(data);
-                    }
-                    
-                    });
-               
-                });
-
-            });
-            
-            $(document).ready(function() { 
-
-                        //$("#hola").val("vv");
-                
-                $("#cityDrp").change(function(){
-                   
-                  
-                    $.ajax({
-                    url:"http://localhost/recycling/index.php/welcome/carregarCP",    
-                    data: {idpoblacio: $(this).val()},
-                    type: "POST",
-                    success: function(data){
-                        
-                        $("#CP").val(data);
-                    }
-                    
-                    });
-               
-                });
-
-            });
-            
-        </script>
+    
  
 </head>
 <body>
+<?php 
+//echo realpath(dirname(__FILE__));
+    require_once("/usr/share/recycling/application/models/model_clients.php");
+
+    $model = new model_clients;
+    $arrayDadesProvincia = $model->getNomProvincia();
+
+    //echo count(arrayDadesProvincia);
+
+    //var_dump($arrayDadesProvincia);
+    echo $arrayDadesProvincia[0] ["provincia"];
+    //$arrayDadesProvincia = mysql_fetch_array($arrayDadesProvincia); 
+    //echo $arrayDadesProvincia;
+?>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -86,6 +49,10 @@
                 </button>
                 <a class="navbar-brand" href="index.html">Administració</a> 
             </div>
+  <div style="color: white;
+padding: 15px 50px 5px 50px;
+float: right;
+font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -99,7 +66,7 @@
                     </li>
                    
                   <li  >
-                        <a class="active-menu"  href="blank.html"><i class="fa fa-square-o fa-3x"></i> Clients</a>
+                        <a class="active-menu"  href="<?php echo base_url('index.php/welcome/index');?>"><i class="fa fa-square-o fa-3x"></i> Clients</a>
                     </li>	
                 </ul>
                
@@ -109,104 +76,114 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
         <h2><?php echo validation_errors(); ?></h2>
-        <form class="form-horizontal" method="post" action=<?echo"../updateClients/".$Codi;?>>
+        <form class="form-horizontal" method="post" action="insertarclients">
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Codi" id="Codi" value=<?php echo $Codi;?> readonly>
+                    <input class="form-control" name="Codi"  placeholder="Codi"/>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="NIF"  placeholder=" N.I.F" value=<?php echo $NIF;?>>
+                    <input class="form-control" name="NIF"  placeholder=" N.I.F"/>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="CompteContable" placeholder="Compte contable" value=<?php echo $Comptecontable;?>>
+                    <input class="form-control" name="CompteContable" placeholder="Compte contable"/>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="NomFiscal" placeholder="Nom fiscal" value=<?php echo $Nomfiscal;?>>
+                    <input class="form-control" name="NomFiscal" placeholder="Nom fiscal"/>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="NomComercial" placeholder="Nom Comercial" value=<?php echo $Nomcomercial;?>>
+                    <input class="form-control" name="NomComercial" placeholder="Nom Comercial"/>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Poblacio" placeholder="Població" value=<?php echo $poblacion;?>>
+                    <input class="form-control" name="Poblacio" placeholder="Població"/>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                     <input class="form-control" name="provincia" placeholder="Provincia" value=<?php echo $Provincia;?>> 
+                    <!-- <input class="form-control" name="Provincia" placeholder="Provincia"/> -->
+                    <select name="provincia">
+                        <?php 
+                            $i = 0;
+                            while($i < count($arrayDadesProvincia)){
+                                //getNomProvincia();
+                                //$arrayDadesProvincia[i]["provincia"];
+                                echo '<option>'. $arrayDadesProvincia[$i]["provincia"] .'</option>';
+                                $i++;
+                            }
+                        ?>
+                    </select>
                 </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input class="form-control" name="Direccio" placeholder="Direcció"/>
+                </div>  
             </div>
              <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="codipostal" placeholder="Codi Postal" value=<?php echo $CodiPostal;?>>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <input class="form-control" name="Direccio" placeholder="Direcció" value=<?php echo $Direccio;?>>
+                    <input class="form-control" name="codipostal" placeholder="codipostal"/>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Contacte" placeholder="Contacte" value=<?php echo $Contacte;?>>
+                    <input class="form-control" name="Contacte" placeholder="Contacte"/>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Email" placeholder="E-mail" value=<?php echo $Email;?>>
+                    <input class="form-control" name="Email" placeholder="E-mail"/>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="TelFixe" placeholder="Telefon Fixe" value=<?php echo $Telfixe;?>>
+                    <input class="form-control" name="TelFixe" placeholder="Telefon Fixe"/>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control"  name="TelMobil" placeholder="Telefon Mòbil" value=<?php echo $Telmobil;?>>
+                    <input class="form-control"  name="TelMobil" placeholder="Telefon Mòbil"/>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Fax" placeholder="Fax" value=<?php echo $Fax;?>>
+                    <input class="form-control" name="Fax" placeholder="Fax"/>
                 </div>
             </div>  
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <input class="form-control" name="Observacions" placeholder="Observacions" value=<?php echo $Observacions;?>>
-                </div>
-            </div>  
-        </div>
-        
-         <button type="submit" class="btn btn-primary" name="updateClients"><span class="glyphicon glyphicon-thumbs-up"></span> Acceptar</button>
+         <button type="submit" class="btn btn-primary" name="insertClients"><span class="glyphicon glyphicon-thumbs-up"></span> Acceptar</button>
+        <button type="reset" class="btn btn-primary">Neteja</button>
         </form>
   
 
 
 </div>
+    
+
+
+
      <!-- /. WRAPPER  -->
      <!-- JQUERY SCRIPTS -->
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="  http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+  
       <!-- BOOTSTRAP SCRIPTS -->
     <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
@@ -230,4 +207,3 @@
    
 </body>
 </html>
-

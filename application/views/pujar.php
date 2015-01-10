@@ -4,19 +4,24 @@
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Free Bootstrap Admin Template : Binary Admin</title>
-	<!-- BOOTSTRAP STYLES-->
+	  <!-- BOOTSTRAP STYLES-->
     <link href="<?php echo base_url();?>assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
     <link href="<?php echo base_url();?>assets/css/font-awesome.css" rel="stylesheet" />
      <!-- MORRIS CHART STYLES-->
-   
+    <link href="<?php echo base_url();?>assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
         <!-- CUSTOM STYLES-->
     <link href="<?php echo base_url();?>assets/css/custom.css" rel="stylesheet" />
-    <link href="<?php echo base_url();?>assets/css/jquery.datetimepicker.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-     <!-- TABLE STYLES-->
-    <link href="<?php echo base_url();?>assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+     <!-- Data tables-->
+
+
+   <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+  <link href="//cdn.datatables.net/plug-ins/28e7751dbec/i18n/Catalan.json" rel="stylesheet">
+  <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.dataTables.js');?>"></script>
+    
+ 
 </head>
 <body>
     <div id="wrapper">
@@ -40,16 +45,15 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Logout</
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 				<li class="text-center">
-                    <img src="<?php echo base_url();?>assets/img/find_user.png" class="user-image img-responsive"/>
-					</li>
-				    </li>   
+                     <img src="<?php echo base_url();?>assets/img/find_user.png" class="user-image img-responsive"/>
+					</li>	
                       <li  >
-                        <a class="active-menu"  href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
+                        <a href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
                     </li>
-                    <li>
-                        <a href="<?php echo base_url('index.php/welcome/index');?>"><i class="fa fa-table fa-3x"></i> Clients</a>
-                    </li>
-                  
+                   
+                  <li  >
+                        <a class="active-menu"  href="<?php echo base_url('index.php/welcome/index');?>"><i class="fa fa-square-o fa-3x"></i> Clients</a>
+                    </li>	
                 </ul>
                
             </div>
@@ -57,9 +61,10 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Logout</
         </nav>  
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
-            <div id="page-inner">
-    <form class="form-horizontal" method="post" action=<?echo"../insertarcites/".$Codi;?>>
-        <div class="row">
+        <h2><?php echo validation_errors(); ?></h2>
+ <? echo form_open_multipart('welcome/do_upload_multiple');?>
+        
+<div class="row">
             <div class="col-md-3">
                 <div class="form-group">
                     <input class="form-control" name="Client"  placeholder="Client">
@@ -82,48 +87,51 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Logout</
                     <input class="form-control" name="Nota" placeholder="Nota"/>
                 </div>
             </div>
-        </div>
-         <button type="submit" class="btn btn-primary" name="insertarcites"><span class="glyphicon glyphicon-thumbs-up"></span> Acceptar</button>
-        <button type="reset" class="btn btn-primary">Neteja</button>
-        </form>
-          
-                <!-- /. ROW  -->
-           
-        </div>
-               
+        <div class="col-md-3">
+                <div class="form-group">
+                    <input type="file" name="archivo[]" multiple="multiple"/>
+                </div>
+            </div>
     </div>
-             <!-- /. PAGE INNER  -->
-            
-         <!-- /. PAGE WRAPPER  -->
+         <button type="submit" class="btn btn-primary" name="do_upload_multiple"><span class="glyphicon glyphicon-thumbs-up"></span> Acceptar</button>
+        <button type="reset" class="btn btn-primary">Neteja</button>
+        <?php echo form_close();?>
+        <?php if($this->session->flashdata('success_upload'));?>
+            <div> 
+            <?php echo $this->session->flashdata('success_upload');?>
+  
+
+
+</div>
+    
+
+
+
      <!-- /. WRAPPER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script src="<?php echo base_url();?>assets/js/jquery-1.10.2.js"></script>
+     <!-- JQUERY SCRIPTS -->
+     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="  http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+  
       <!-- BOOTSTRAP SCRIPTS -->
     <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
     <script src="<?php echo base_url();?>assets/js/jquery.metisMenu.js"></script>
-     <!-- DATA TABLE SCRIPTS -->
-    <script src="<?php echo base_url();?>assets/js/dataTables/jquery.dataTables.js"></script>
-    <script src="<?php echo base_url();?>assets/js/dataTables/dataTables.bootstrap.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('#dataTables-example').dataTable();
-            });
-    </script>
-         <!-- CUSTOM SCRIPTS -->
+     <!-- MORRIS CHART SCRIPTS -->
+     <script src="<?php echo base_url();?>assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/morris/morris.js"></script>
+      <!-- CUSTOM SCRIPTS -->
     <script src="<?php echo base_url();?>assets/js/custom.js"></script>
-    <script src="<?php echo base_url();?>assets/js/jquery.datetimepicker.js"></script>
-     <!--Plugin per al desplegable de data i hora -->
-<script type="text/javascript">
-// Script per a les dates i hores
-$('#datetimepicker').datetimepicker()
-.datetimepicker({value:'Dia Hora',step:10});
-$('#datetimepicker_mask').datetimepicker({
-// mask:'9999/19/39 29:59'
-mask:'39/19/9999 29:59'
-});
-</script> 
+
+<!-- DataTables -->
+
+
+<script>
+          $(document).ready(function() {
+    $('#example').dataTable();
+} );
+
+    </script>
+    
    
 </body>
 </html>

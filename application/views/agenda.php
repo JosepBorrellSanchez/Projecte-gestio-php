@@ -3,7 +3,7 @@
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Bootstrap Admin Template : Binary Admin</title>
+    <title>Gestió Talleres SALO</title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="<?php echo base_url();?>assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
@@ -17,6 +17,7 @@
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
      <!-- TABLE STYLES-->
     <link href="<?php echo base_url();?>assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 </head>
 <body>
     <div id="wrapper">
@@ -30,10 +31,7 @@
                 </button>
                 <a class="navbar-brand" href="index.html">Administració</a> 
             </div>
-  <div style="color: white;
-padding: 15px 50px 5px 50px;
-float: right;
-font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+  
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -47,7 +45,7 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Logout</
                         <a class="active-menu"  href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('index.php/welcome/index');?>"><i class="fa fa-table fa-3x"></i> Clients</a>
+                        <a href="<?php echo base_url('index.php/welcome/index');?>"><i class="fa fa-square-o fa-3x"></i> Clients</a>
                     </li>
                   
                 </ul>
@@ -76,9 +74,10 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Logout</
                                     <tr>
                                     <th>id</th>
                                     <th>Client</th>
-                                    <th>DiaHora</th>
-                                    <th>Asumpte</th>
+                                    <th>Dia i Hora</th>
+                                    <th>Assumpte</th>
                                     <th>Nota</th>
+                                    <th>Documents</th>
                                     <th>Accions</th>
                                     </tr>
                                     </thead>
@@ -91,15 +90,21 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Logout</
                                         <td><?php echo $llistarcites['DiaHora']; ?></td>
                                         <td><?php echo $llistarcites['Asumpte']; ?></td>
                                         <td><?php echo $llistarcites['Nota']; ?></td>
+                                        <td><a href='<?php echo $llistarcites['Documents']; ?>'> <?php echo $llistarcites['Nom']; ?></td>
                                         <td>
-                                        <a href='/recycling/index.php/welcome/updateClients/<?php echo $llistarcites['Codi']; ?>'>
+                                        <a href='/recycling/index.php/welcome/carregarCites/<?php echo $llistarcites['id_agenda']; ?>'>
                                         <button type="button" class="btn btn-warning btn-sm">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                         </button>
                                         </a>
-                                        <a href='/recycling/index.php/welcome/eliminarCita/<?php echo $llistarcites['id_agenda']; ?>' onclick="return confirm('Estas segur que vols eliminar aquest client?');">
+                                        <a href='/recycling/index.php/welcome/eliminarCita/<?php echo $llistarcites['id_agenda']; ?>' onclick="return confirm('Estas segur que vols eliminar aquesta cita?');">
                                         <button type="button" class="btn btn-danger btn-sm eliminar">
                                         <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                        </a>
+                                        <a href='/recycling/index.php/welcome/generarcita/<?php echo $llistarcites['id_agenda']; ?>'>
+                                        <button type="button" class="btn btn-info btn-sm">
+                                        <span class="glyphicon glyphicon-book"></span>
                                         </button>
                                         </a>
                                         </td>

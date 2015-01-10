@@ -47,7 +47,7 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Logout</
                         <a class="active-menu"  href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('index.php/welcome/index');?>"><i class="fa fa-table fa-3x"></i> Clients</a>
+                        <a href="<?php echo base_url('index.php/welcome/index');?>"><i class="fa fa-square-o fa-3x"></i> Clients</a>
                     </li>
                   
                 </ul>
@@ -58,28 +58,31 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Logout</
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
             <div id="page-inner">
-    <form class="form-horizontal" method="post" action=<?echo"../insertarcites/".$Codi;?>>
+                
+             <h2><?php echo validation_errors(); ?></h2>
+
+        <form class="form-horizontal" method="post" action=<? echo"../updateCites/".$id_agenda;?>>
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Client"  placeholder="Client">
+                    <input class="form-control" name="Client"  placeholder="Client" value=<?php echo $Client;?>>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="DiaHora"  id="datetimepicker">
+                    <input class="form-control" name="DiaHora"  id="datetimepicker" value=<?php echo $DiaHora;?>>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Asumpte" placeholder="Asumpte"/>
+                    <input class="form-control" name="Asumpte" placeholder="Asumpte" value=<?php echo $Asumpte;?>>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Nota" placeholder="Nota"/>
+                    <input class="form-control" name="Nota" placeholder="Nota" value=<?php echo $Nota;?>>
                 </div>
             </div>
         </div>
