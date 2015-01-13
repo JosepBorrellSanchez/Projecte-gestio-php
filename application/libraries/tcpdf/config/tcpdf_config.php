@@ -114,7 +114,7 @@ define ('PDF_HEADER_TITLE', 'Formulari');
 /**
  * Header description string.
  */
-define ('PDF_HEADER_STRING', "Talleres Salo S.L");
+define ('PDF_HEADER_STRING', "Borrells S.L");
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].

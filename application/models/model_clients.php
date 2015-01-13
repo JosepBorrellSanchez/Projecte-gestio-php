@@ -9,16 +9,19 @@ $this->load->database();
 
 		// Tots els gets que consulten les dades a la base dades
 		function getcita($codi) {
-			$this->db->select('id_agenda,Client,DiaHora,Asumpte,Nota,Nom,Documents');
-			$this->db->from('Agenda');
+			$this->db->select('A.id_agenda,B.Nomfiscal,A.DiaHora,A.Asumpte,A.Nota');
+			$this->db->from('Agenda as A ');
+			$this->db->join('Clients as B','A.Client=B.Codi');
 			$this->db->where('Num_Client',$codi);
 			return $this->db->get()->result_array();
 		}
 
 		function getcitamod($id_agenda) {
-			$this->db->select('id_agenda,Client,DiaHora,Asumpte,Nota');		
+			$this->db->select('A.id_agenda,B.Nomfiscal,A.DiaHora,A.Asumpte,A.Nota');		
+			$this->db->from('Agenda as A');
+			$this->db->join('Clients as B','A.Client=B.Codi');
 			$this->db->where('id_agenda',$id_agenda);
-			$query = $this->db->get('Agenda');
+			$query = $this->db->get();
 			return $query;
 		}
 
@@ -102,23 +105,20 @@ $this->load->database();
 			$this->db->update('Clients', $data);
 		}
 
-		function insertaCita($codi,$client,$diahora,$asumpte,$nota,$nom,$file_name)
+		function insertaCita($codi,$client,$diahora,$asumpte,$nota)
 		{
 			$data = array(
 			'Num_Client'=> $codi,
 			'Client'=> $client,
 			'DiaHora'=> $diahora,
 			'Asumpte'=> $asumpte,
-			'Nota'=> $nota,
-			'Nom'=> $nom,
-			'Documents' => $file_name);
+			'Nota'=> $nota);
 			$this->db->insert('Agenda', $data);
 		}
 
 		function modificarCita($client,$diahora,$asumpte,$nota)
 		{
 			$data = array(
-			'Client'=> $client,
 			'DiaHora'=> $diahora,
 			'Asumpte'=> $asumpte,
 			'Nota'=> $nota);

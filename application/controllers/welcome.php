@@ -335,7 +335,7 @@ function carregarCites($id_agenda)  {
 // ---------------------------------------------------------
 // Cerrar el documento PDF y preparamos la salida
 // Este método tiene varias opciones, consulte la documentación para más información.
-        $nombre_archivo = utf8_decode("Fitxe de l'empresa ".$nomfiscal.".pdf");
+        $nombre_archivo = utf8_decode("Fitxa del client ".$nomfiscal.".pdf");
         $pdf->Output($nombre_archivo, 'I');
     }
 
@@ -343,9 +343,9 @@ function carregarCites($id_agenda)  {
         $this->load->library('Pdf');
         $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
-        $pdf->SetAuthor('Albert Cañelles');
-        $pdf->SetTitle('Factura');
-        $pdf->SetSubject('Factura');
+        $pdf->SetAuthor('BORRELLS S.L');
+        $pdf->SetTitle('Cita');
+        $pdf->SetSubject('Cita');
         $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
  
 // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config_alt.php de libraries/config
@@ -392,7 +392,7 @@ function carregarCites($id_agenda)  {
 		//$this->load->view('table', $data);
         //preparamos y maquetamos el contenido a crear
        
-        $client = $data->Client;
+        $client = $data->Nomfiscal;
 		$diahora = $data->DiaHora;
 		$asumpte = $data->Asumpte;
 		$nota = $data->Nota;
