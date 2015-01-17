@@ -3,74 +3,39 @@
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Bootstrap Admin Template : Binary Admin</title>
-	  <!-- BOOTSTRAP STYLES-->
-    <link href="<?php echo base_url();?>assets/css/bootstrap.css" rel="stylesheet" />
-     <!-- FONTAWESOME STYLES-->
-    <link href="<?php echo base_url();?>assets/css/font-awesome.css" rel="stylesheet" />
-     <!-- MORRIS CHART STYLES-->
-    <link href="<?php echo base_url();?>assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-        <!-- CUSTOM STYLES-->
-    <link href="<?php echo base_url();?>assets/css/custom.css" rel="stylesheet" />
-     <!-- GOOGLE FONTS-->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-     <!-- Data tables-->
-
-
-   <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
-  <link href="//cdn.datatables.net/plug-ins/28e7751dbec/i18n/Catalan.json" rel="stylesheet">
-  <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.dataTables.js');?>"></script>
+    <title>Borrells mod clients</title>
+    <?php include("capçalera.php"); ?>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
         
         <script type="text/javascript">
         
         
-            $(document).ready(function() { 
-
-                        //$("#hola").val("vv");
-                
+            $(document).ready(function() {
                 $("#provincias").change(function(){
-                   
-                  
                     $.ajax({
                     url:"http://localhost/recycling/index.php/welcome/buildDropCities",    
                     data: {id: $(this).val()},
                     type: "POST",
                     success: function(data){
-                        
                         $("#cityDrp").html(data);
                     }
-                    
                     });
-               
                 });
-
             });
             
             $(document).ready(function() { 
-
-                        //$("#hola").val("vv");
-                
                 $("#cityDrp").change(function(){
-                   
-                  
                     $.ajax({
                     url:"http://localhost/recycling/index.php/welcome/carregarCP",    
                     data: {idpoblacio: $(this).val()},
                     type: "POST",
                     success: function(data){
-                        
-                        $("#CP").val(data);
+                        $("#codipostal").val(data);
                     }
-                    
                     });
-               
                 });
-
             });
-            
         </script>
  
 </head>
@@ -109,91 +74,111 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
         <h2><?php echo validation_errors(); ?></h2>
-        <form class="form-horizontal" method="post" action=<?echo"../updateClients/".$Codi;?>>
+        <form class="form-horizontal" method="post" action=<?echo"../updateClients/".$clients->Codi;?>>
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Codi" id="Codi" value=<?php echo $Codi;?> readonly>
+                    <input class="form-control" name="Codi" id="Codi" value=<?php echo $clients->Codi;?> readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="NIF"  placeholder=" N.I.F" value=<?php echo $NIF;?>>
+                    <input class="form-control" name="NIF"  placeholder=" N.I.F" value=<?php echo $clients->NIF;?>>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="CompteContable" placeholder="Compte contable" value=<?php echo $Comptecontable;?>>
+                    <input class="form-control" name="CompteContable" placeholder="Compte contable" value=<?php echo $clients->Comptecontable;?>>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="NomFiscal" placeholder="Nom fiscal" value=<?php echo $Nomfiscal;?>>
+                    <input class="form-control" name="NomFiscal" placeholder="Nom fiscal" value='<?php echo $clients->Nomfiscal;?>'>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="NomComercial" placeholder="Nom Comercial" value=<?php echo $Nomcomercial;?>>
+                    <input class="form-control" name="NomComercial" placeholder="Nom Comercial" value='<?php echo $clients->Nomcomercial;?>'>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Poblacio" placeholder="Població" value=<?php echo $poblacion;?>>
+                    <input class="form-control" name="Poblacio" placeholder="Població" value='<?php echo "Ciutat actual:  ".$clients->poblacion;?>' readonly>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="form-group">
+                     <input class="form-control" name="provincia" placeholder="Provincia" value='<?php echo "Provincia actual:  ".$clients->Provincia;?>' readonly> 
+                </div>
+            </div>
+        </div>    
+        <div class="row">    
+            <div class="col-md-2">
+                <div class="form-group">
+                    <?php
+                    //desplegable provincias
+                    echo form_dropdown('provincias', $provincias, 'Escoge una provincia', 'id="provincias"');
+                    //campo de texto postal?>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                     <input class="form-control" name="provincia" placeholder="Provincia" value=<?php echo $Provincia;?>> 
+                    <select name="cityDrp" id="cityDrp">
+                        <option value="">Select</option>
+                    </select>
                 </div>
             </div>
+            
+            
              <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="codipostal" placeholder="Codi Postal" value=<?php echo $CodiPostal;?>>
+                    <input class="form-control" name="codipostal" id ="codipostal" placeholder="Codi Postal" value=<?php echo $clients->CodiPostal;?>>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Direccio" placeholder="Direcció" value=<?php echo $Direccio;?>>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <input class="form-control" name="Contacte" placeholder="Contacte" value=<?php echo $Contacte;?>>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <input class="form-control" name="Email" placeholder="E-mail" value=<?php echo $Email;?>>
+                    <input class="form-control" name="Direccio" placeholder="Direcció" value='<?php echo $clients->Direccio;?>'>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="TelFixe" placeholder="Telefon Fixe" value=<?php echo $Telfixe;?>>
+                    <input class="form-control" name="Contacte" placeholder="Contacte" value='<?php echo $clients->Contacte;?>'>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control"  name="TelMobil" placeholder="Telefon Mòbil" value=<?php echo $Telmobil;?>>
+                    <input class="form-control" name="Email" placeholder="E-mail" value=<?php echo $clients->Email;?>>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input class="form-control" name="TelFixe" placeholder="Telefon Fixe" value=<?php echo $clients->Telfixe;?>>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Fax" placeholder="Fax" value=<?php echo $Fax;?>>
+                    <input class="form-control"  name="TelMobil" placeholder="Telefon Mòbil" value=<?php echo $clients->Telmobil;?>>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input class="form-control" name="Fax" placeholder="Fax" value=<?php echo $clients->Fax;?>>
                 </div>
             </div>  
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <input class="form-control" name="Observacions" placeholder="Observacions" value=<?php echo $Observacions;?>>
+                    <input class="form-control" name="Observacions" placeholder="Observacions" value='<?php echo $clients->Observacions;?>'>
                 </div>
             </div>  
         </div>

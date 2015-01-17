@@ -80,7 +80,7 @@ parent::__construct();
 
 	public function insertavisita($codi) {
 		$data = $this->model_clients->getclientcodi($codi)->row();
-		$this->load->view('incertarcites', $data);
+		$this->load->view('insertarcites', $data);
 	}
 
 	 function insertarclients() {
@@ -207,7 +207,13 @@ public function upload() {
 	}
 	 function carregarClients($codi)  {
 	 	
-		$data = $this->model_clients->getclientcodi($codi)->row();
+		//$data = $this->model_clients->getclientcodi($codi)->row();
+		
+		$data = array(
+               "provincias" => $this->model_poblacio_provincia->getProvincias(),
+               "clients" => $this->model_clients->getclientcodi($codi)->row()
+            );
+            
 		$this->load->view('modificarclients', $data);}
 
 function carregarCites($id_agenda)  {
@@ -215,23 +221,25 @@ function carregarCites($id_agenda)  {
 		$data = $this->model_clients->getcitamod($id_agenda)->row();
 		$this->load->view('modificarcites', $data);}
 
-	function updateCites($id)  {
+	function updateCites($id_agenda)  {
         $client = $this->input->post('Client');
 		$diahora = $this->input->post('DiaHora');
 		$asumpte = $this->input->post('Asumpte');
 		$nota = $this->input->post('Nota');
-		$this->model_clients->modificarCita($client, $diahora, $asumpte, $nota);
+		$this->model_clients->modificarCita($id_agenda, $diahora, $asumpte, $nota);
 			//$this->load->model('model_clients');
 		redirect ('welcome/taula');	
 	}
-		function updateClients($codi)  {
+	function updateClients($codi)  {
         $codi = $this->input->post('Codi');
 		$codi1 = $codi;
 		$nif = $this->input->post('NIF');
 		$comptecontable = $this->input->post('CompteContable');
 		$nomfiscal = $this->input->post('NomFiscal');
 		$nomcomercial = $this->input->post('NomComercial');
-		$poblacio = $this->input->post('Poblacio');
+		$poblacio = $this->input->post('cityDrp');
+		$codipostal = $this->input->post('codipostal');
+		$provincia = $this->input->post('provincias');
 		$direccio = $this->input->post('Direccio');
 		$contacte = $this->input->post('Contacte');
 		$email = $this->input->post('Email');
@@ -239,7 +247,7 @@ function carregarCites($id_agenda)  {
 		$telmobil = $this->input->post('TelMobil');
 		$fax = $this->input->post('Fax');
 		$observacions = $this->input->post('Observacions');
-		$this->model_clients->modificarClients($codi, $nif, $comptecontable, $nomfiscal, $nomcomercial, $poblacio, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions);
+		$this->model_clients->modificarClients($codi, $nif, $comptecontable, $nomfiscal, $nomcomercial, $provincia, $poblacio, $codipostal, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions);
 			//$this->load->model('model_clients');
 		redirect ('welcome/taula');	
 	}
@@ -302,7 +310,7 @@ function carregarCites($id_agenda)  {
 		$comptecontable = $data->Comptecontable;
 		$nomfiscal = $data->Nomfiscal;
 		$nomcomercial = $data->Nomcomercial;
-		$poblacio = $data->Poblacio;
+		$poblacio = $data->poblacion;
 		$direccio = $data->Direccio;
 		$contacte = $data->Contacte;
 		$email = $data->Email;

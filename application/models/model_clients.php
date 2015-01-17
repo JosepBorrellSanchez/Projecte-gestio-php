@@ -87,14 +87,16 @@ $this->load->database();
 		}
 		// Tots els update
 
-		function modificarClients($codi,$nif,$comptecontable,$nomfiscal,$nomcomercial,$poblacio,$direccio,$contacte,$email,$telfixe,$telmobil,$fax){
+		function modificarClients($codi,$nif,$comptecontable,$nomfiscal,$nomcomercial,$provincia,$poblacio,$codipostal,$direccio,$contacte,$email,$telfixe,$telmobil,$fax){
 			$data = array(
 			'Codi'=> $codi,
 			'NIF'=> $nif,
 			'Comptecontable'=> $comptecontable,
 			'Nomfiscal'=> $nomfiscal,
 			'Nomcomercial'=> $nomcomercial,
+			'Provincia'=> $provincia,
 			'Poblacio'=> $poblacio,
+			'CodiPostal'=> $codipostal,
 			'Direccio'=> $direccio,
 			'Contacte'=> $contacte,
 			'Email'=> $email,
@@ -116,12 +118,13 @@ $this->load->database();
 			$this->db->insert('Agenda', $data);
 		}
 
-		function modificarCita($client,$diahora,$asumpte,$nota)
+		function modificarCita($id_agenda,$diahora,$asumpte,$nota)
 		{
 			$data = array(
 			'DiaHora'=> $diahora,
 			'Asumpte'=> $asumpte,
 			'Nota'=> $nota);
+			$this->db->where('id_agenda',$id_agenda);
 			$this->db->update('Agenda', $data);
 		}
 }
