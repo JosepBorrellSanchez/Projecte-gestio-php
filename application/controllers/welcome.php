@@ -7,6 +7,7 @@ parent::__construct();
 	$this->load->library('form_validation'); // La llibreria per fer els camps requerits
 	$this->load->model('model_clients');
 	$this->load->model('model_poblacio_provincia');
+	$this->load->model('model_portada');
 	$this->load->library('session');
 } 
 	/**
@@ -15,7 +16,10 @@ parent::__construct();
 	 */
 	public function index()
 	{
+	 $diaavui = date("Y/m/d");
+	 //$citesavui = $this->model_portada->getcitesdianum($diaavui);
 	 $this->load->view('portada');
+	 //$this->load->view('portada',$citesavui);
 	}
 
 	public function taula()
@@ -113,6 +117,7 @@ parent::__construct();
 		$this->model_clients->insertaCita($codi,$client, $diahora, $asumpte, $nota);
 		redirect('welcome/agenda/'.$codi);
 }
+
 
 
 public function upload() {
@@ -247,8 +252,13 @@ function carregarCites($id_agenda)  {
 		$telmobil = $this->input->post('TelMobil');
 		$fax = $this->input->post('Fax');
 		$observacions = $this->input->post('Observacions');
-		$this->model_clients->modificarClients($codi, $nif, $comptecontable, $nomfiscal, $nomcomercial, $provincia, $poblacio, $codipostal, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions);
+		if ($poblacio == null){
+			$this->model_clients->modificarClients($codi, $nif, $comptecontable, $nomfiscal, $nomcomercial, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions);}
+		else{
+		$this->model_clients->modificarClientsTot($codi, $nif, $comptecontable, $nomfiscal, $nomcomercial, $provincia, $poblacio, $codipostal, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions);
 			//$this->load->model('model_clients');
+			}
+			
 		redirect ('welcome/taula');	
 	}
 
@@ -256,9 +266,9 @@ function carregarCites($id_agenda)  {
         $this->load->library('Pdf');
         $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
-        $pdf->SetAuthor('Albert Cañelles');
-        $pdf->SetTitle('Factura');
-        $pdf->SetSubject('Factura');
+        $pdf->SetAuthor('Borrells');
+        $pdf->SetTitle('Fitxa de client');
+        $pdf->SetSubject('Fitxa');
         $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
  
 // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config_alt.php de libraries/config

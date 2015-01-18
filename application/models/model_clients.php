@@ -87,7 +87,24 @@ $this->load->database();
 		}
 		// Tots els update
 
-		function modificarClients($codi,$nif,$comptecontable,$nomfiscal,$nomcomercial,$provincia,$poblacio,$codipostal,$direccio,$contacte,$email,$telfixe,$telmobil,$fax){
+		function modificarClients($codi,$nif,$comptecontable,$nomfiscal,$nomcomercial,$direccio,$contacte,$email,$telfixe,$telmobil,$fax){
+			$data = array(
+			'Codi'=> $codi,
+			'NIF'=> $nif,
+			'Comptecontable'=> $comptecontable,
+			'Nomfiscal'=> $nomfiscal,
+			'Nomcomercial'=> $nomcomercial,
+			'Direccio'=> $direccio,
+			'Contacte'=> $contacte,
+			'Email'=> $email,
+			'Telfixe'=> $telfixe,
+			'Telmobil'=> $telmobil,
+			'Fax'=> $fax);
+			$this->db->where('Codi',$codi);
+			$this->db->update('Clients', $data);
+		}
+		
+		function modificarClientsTot($codi,$nif,$comptecontable,$nomfiscal,$nomcomercial,$provincia,$poblacio,$codipostal,$direccio,$contacte,$email,$telfixe,$telmobil,$fax){
 			$data = array(
 			'Codi'=> $codi,
 			'NIF'=> $nif,
@@ -106,6 +123,7 @@ $this->load->database();
 			$this->db->where('Codi',$codi);
 			$this->db->update('Clients', $data);
 		}
+		
 
 		function insertaCita($codi,$client,$diahora,$asumpte,$nota)
 		{

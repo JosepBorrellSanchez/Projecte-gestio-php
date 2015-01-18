@@ -18,16 +18,19 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Client" value=<?php echo $Nomfiscal;?> readonly>
+					Nom fiscal
+                    <input class="form-control" name="Client" value='<?php echo $Nomfiscal;?>' readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="DiaHora" id="datetimepicker" value='<?php echo $DiaHora;?>'> 
+					Dia i hora
+                    <input class="form-control" name="DiaHora" id="datetimepicker"> 
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
+					Assumpte
                     <input class="form-control" name="Asumpte" placeholder="Asumpte" value='<?php echo $Asumpte;?>'>
                 </div>
             </div>
@@ -35,12 +38,13 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
+					Nota
                     <input class="form-control" name="Nota" placeholder="Nota" value='<?php echo $Nota;?>'>
                 </div>
             </div>
         </div>
-         <button type="submit" class="btn btn-primary" name="insertarcites"><span class="glyphicon glyphicon-thumbs-up"></span> Acceptar</button>
-        <button type="reset" class="btn btn-primary">Neteja</button>
+        <button type="submit" class="btn btn-primary" name="insertarcites"><span class="glyphicon glyphicon-thumbs-up"></span> Acceptar</button>
+        <!-- <button type="reset" class="btn btn-primary">Neteja</button> -->
         </form>
           
                 <!-- /. ROW  -->
@@ -74,7 +78,7 @@
 <script type="text/javascript">
 // Script per a les dates i hores
 $('#datetimepicker').datetimepicker()
-.datetimepicker({value:'Dia Hora',step:10});
+.datetimepicker({value:'<?php echo $DiaHora;?>',step:10});
 $('#datetimepicker_mask').datetimepicker({
 // mask:'9999/19/39 29:59'
 mask:'39/19/9999 29:59'

@@ -19,6 +19,14 @@
                     <i class="fa fa-bell-o"></i>
                 </span>
                 <div class="text-box" >
+					
+					<!-- Avore aixo hem de fer que agafe totes les cites de la taula agenda
+						i que compare en la funcio echo "Today is " . date("Y/m/d") . "<br>";
+						allavons si concidix lo dia de la cita en lo dia d'avui que sume 1 a un contador
+						i lo que mostrarem aqui sera lo total de este contador. 
+						Allavons si pot ser al fer clic mostrar en taula les cites d'aquell dia.-->
+						
+						
                     <p class="main-text">240 Visites programades</p>
                     <p class="text-muted">Avui</p>
                 </div>
