@@ -16,9 +16,16 @@ parent::__construct();
 	 */
 	public function index()
 	{
-	 $diaavui = date("Y/m/d");
+		$dia =  date("Y/m/d");
+		$data = array(
+			"dataavui" => date("Y/m/d"),
+			//"quantescites" => $this->model_portada->getcitesdianum($dia),
+			"cites" => $this->model_portada->gettotescites()
+			);
+	 //$data = $this->model_portada->gettotescites();
 	 //$citesavui = $this->model_portada->getcitesdianum($diaavui);
-	 $this->load->view('portada');
+	 $this->load->view('portada', $data);
+	 //$this->load->view('portada', $data);
 	 //$this->load->view('portada',$citesavui);
 	}
 
