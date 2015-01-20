@@ -28,7 +28,8 @@
 						Allavons si pot ser al fer clic mostrar en taula les cites d'aquell dia. -->
 						
 						
-                    <p class="main-text">240 Visites programades</p>
+                    <p class="main-text"><?php echo sizeof($this->_ci_cached_vars['cites'])?></p>
+                    <?//php echo sizeof($this->_ci_cached_vars['cites'])?>
                     <p class="text-muted">Avui</p>
                 </div>
              </div>
@@ -59,7 +60,9 @@
                                     </thead>
                                     <tbody>
                                         <!--Llisto les dades amb un for each -->
+                                        <?//php $contador = 0;?>
                                         <?php foreach($this->_ci_cached_vars['cites'] as $index => $cita){ ?>
+                                        <?//php $contador = $contador+1 ?>
                                         <tr>
                                         <td><?php echo $cita['id_agenda']; ?></td>
                                         <td><?php echo $cita['Nomfiscal']; ?></td>
