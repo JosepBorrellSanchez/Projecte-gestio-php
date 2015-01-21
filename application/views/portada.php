@@ -28,7 +28,7 @@
 						Allavons si pot ser al fer clic mostrar en taula les cites d'aquell dia. -->
 						
 						
-                    <p class="main-text"><?php echo sizeof($this->_ci_cached_vars['cites'])?></p>
+                    <p class="main-text"><?php echo sizeof($this->_ci_cached_vars['cites'])." cites programades per avui" ?></p>
                     <?//php echo sizeof($this->_ci_cached_vars['cites'])?>
                     <p class="text-muted">Avui</p>
                 </div>
