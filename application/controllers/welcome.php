@@ -16,7 +16,11 @@ parent::__construct();
 	 */
 	public function index()
 	{
-		$dia =  date("Y/m/d");
+		if($this->session->userdata('logged_in'))
+   {
+     $session_data = $this->session->userdata('logged_in');
+     $data['username'] = $session_data['username'];
+     $dia =  date("Y/m/d");
 		$data = array(
 			"dataavui" => date("Y/m/d"),
 			//"quantescites" => $this->model_portada->getcitesdianum($dia),
@@ -27,7 +31,15 @@ parent::__construct();
 	 $this->load->view('portada', $data);
 	 //$this->load->view('portada', $data);
 	 //$this->load->view('portada',$citesavui);
-	}
+	 
+	 //http://www.iluv2code.com/login-with-codeigniter-php.html
+   }
+   else
+   {
+     //If no session, redirect to login page
+     redirect('login', 'refresh');
+   }
+ }
 
 	public function taula()
 	{
@@ -268,6 +280,14 @@ function carregarCites($id_agenda)  {
 			
 		redirect ('welcome/taula');	
 	}
+	
+	function logout()
+ //es carrega la sessió.
+ {
+   $this->session->unset_userdata('logged_in');
+   session_destroy();
+   redirect('home', 'refresh');
+ }
 
 	public function generar($codi) {
         $this->load->library('Pdf');
