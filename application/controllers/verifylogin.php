@@ -9,7 +9,6 @@ class VerifyLogin extends CI_Controller {
  }
 
  function index()
- //Carrega la vista i estableix normes per als camps usuari i contrasenya.
  {
    //This method will have the credentials validation
    $this->load->library('form_validation');
@@ -19,21 +18,20 @@ class VerifyLogin extends CI_Controller {
 
    if($this->form_validation->run() == FALSE)
    {
-     //Field validation failed.&nbsp; User redirected to login page
+     //Field validation failed.  User redirected to login page
      $this->load->view('login_view');
    }
    else
    {
      //Go to private area
-     redirect('home', 'refresh');
+     redirect('../', 'refresh');
    }
 
  }
 
  function check_database($password)
- //comprova si els registres insertats al formulari son correctes.
  {
-   //Field validation succeeded.&nbsp; Validate against database
+   //Field validation succeeded.  Validate against database
    $username = $this->input->post('username');
 
    //query the database
@@ -45,8 +43,8 @@ class VerifyLogin extends CI_Controller {
      foreach($result as $row)
      {
        $sess_array = array(
-         'id' => $row->ID,
-         'username' => $row->usuari
+         'id' => $row->id,
+         'username' => $row->username
        );
        $this->session->set_userdata('logged_in', $sess_array);
      }
@@ -54,8 +52,9 @@ class VerifyLogin extends CI_Controller {
    }
    else
    {
-     $this->form_validation->set_message('check_database', 'Usuari o paraula de pas incorrectes');
+     $this->form_validation->set_message('check_database', 'Invalid username or password');
      return false;
    }
  }
 }
+?>

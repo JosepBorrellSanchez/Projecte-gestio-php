@@ -1,13 +1,12 @@
 <?php
 Class User extends CI_Model
 {
-	//fa la funció de login per comprovar que es correcte
  function login($username, $password)
  {
-   $this -> db -> select('ID, usuari, contrasenya');
-   $this -> db -> from('usuaris');
-   $this -> db -> where('usuari', $username);
-   $this -> db -> where('contrasenya', $password);
+   $this -> db -> select('id, username, password');
+   $this -> db -> from('users');
+   $this -> db -> where('username', $username);
+   $this -> db -> where('password', MD5($password));
    $this -> db -> limit(1);
 
    $query = $this -> db -> get();
@@ -22,5 +21,5 @@ Class User extends CI_Model
    }
  }
 }
-
+?>
 
