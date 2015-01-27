@@ -11,8 +11,11 @@
 					}
 		</style>
  </head>
- <body>
-   <?php echo validation_errors(); ?>
+<body>
+    <div id="wrapper">
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+        <?php echo validation_errors(); ?>
    <?php echo form_open('verifylogin'); ?>
    <h3>Has d'entrar amb el teu usuari i contrasenya</h3>
      <label for="username">Nom d'usuari:</label>
@@ -23,6 +26,8 @@
      <br/>
      <input type="submit" value="Login" class="btn btn-success"/>
    </form>
- </body>
+</div>
+</body>
 </html>
+
 
