@@ -53,6 +53,7 @@
                                     <tr>
                                     <th>id</th>
                                     <th>Client</th>
+                                    <th>Dia i hora</th>
                                     <th>Assumpte</th>
                                     <th>Nota</th>
                                     <th>Accions</th>
@@ -66,6 +67,7 @@
                                         <tr>
                                         <td><?php echo $cita['id_agenda']; ?></td>
                                         <td><?php echo $cita['Nomfiscal']; ?></td>
+                                        <td><?php echo $cita['DiaHora']; ?></td>
                                         <td><?php echo $cita['Asumpte']; ?></td>
                                         <td><?php echo $cita['Nota']; ?></td>
                                         <td>

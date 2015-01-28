@@ -9,12 +9,14 @@ $this->load->database();
 
 		// Tots els gets que consulten les dades a la base dades
 		//function getcitesdia($diaavui) {
-		function getcitesdia() {
+		function getcitesdia($dia) {
 			// SELECT MID(DiaHora,6) FROM Agenda
 			//SELECT MID(a,6) FROM (SELECT DiaHora as a FROM Agenda WHERE DiaHora LIKE '______24/01/2015%') as b
-			$this->db->select('*', FALSE);
-			$this->db->from('Agenda', FALSE);
-			$this->db->where('DiaHora like "______15/01/2015%"');
+			$this->db->select('A.id_agenda,B.Nomfiscal,A.DiaHora,A.Asumpte,A.Nota', FALSE);
+			$this->db->from('Agenda as A', FALSE);
+			$this->db->join('Clients as B','A.Client=B.Codi');
+			$this->db->where('SUBSTRING(DiaHora,7)', $dia);
+			//SELECT * from Agenda WHERE SUBSTRING(DiaHora,7) = '28/01/2015'
 			//$this->db->like('______15/01/2015%');
 			//$this->db->select('DiaHora as a');
 			//$this->db->from('Agenda');

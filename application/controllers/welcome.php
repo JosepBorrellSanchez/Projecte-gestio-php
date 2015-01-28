@@ -20,11 +20,12 @@ parent::__construct();
    {
      $session_data = $this->session->userdata('logged_in');
      $data['username'] = $session_data['username'];
-     $dia =  date("Y/m/d");
+     $dia =  date("d/m/Y");
+     //$dia = "28/01/2015";
 		$data = array(
 			"dataavui" => date("Y/m/d"),
 			//"quantescites" => $this->model_portada->getcitesdianum($dia),
-			"cites" => $this->model_portada->getcitesdia()
+			"cites" => $this->model_portada->getcitesdia($dia)
 			);
 	 //$data = $this->model_portada->gettotescites();
 	 //$citesavui = $this->model_portada->getcitesdianum($diaavui);
