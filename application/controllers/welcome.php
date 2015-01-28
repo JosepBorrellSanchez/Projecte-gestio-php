@@ -370,8 +370,8 @@ function carregarCites($id_agenda)  {
  //es carrega la sessió.
  {
    $this->session->unset_userdata('logged_in');
-   session_destroy();
-   redirect('home', 'refresh');
+   //session_destroy();
+   redirect('login', 'refresh');
  }
 
 	public function generar($codi) {

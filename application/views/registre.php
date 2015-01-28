@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
         <meta charset="utf-8">
-        <title>Login</title>
+        <title>Registre</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -15,13 +15,16 @@
  </head>
  <body>
    <div class="page-container">
-            <h1>Login</h1>
+            <h1>Registre</h1>
             <?php echo validation_errors(); ?>
-			<?php echo form_open('verifylogin'); ?>
+			<?php echo form_open('registre/registration'); ?>
                 <input type="text" name="username" class="username" placeholder="Nom d'usuari">
                 <input type="password" name="password" class="password" placeholder="Paraula de pas">
-                <button type="submit">Entrar</button>
-                No tens un compte? registrat <a href="<?php echo base_url('index.php/registre')?>";>aquí</a>
+                <input type="password" name="con_password" class="con_password" placeholder="Confirma la paraula de pas">
+                <input type="text" name="nomicognoms" class="nomicognoms" placeholder="Nom i cognoms">
+                <input type="text" name="email" class="email" placeholder="Email">
+                <button type="submit">Registrar-se</button>
+                Ja tens un compte? entra <a href="<?php echo base_url('index.php/login')?>";>aquí</a>
                 <div class="error"><span>+</span></div>
             </form>
         </div>

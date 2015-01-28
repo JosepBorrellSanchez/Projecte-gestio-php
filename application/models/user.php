@@ -19,17 +19,18 @@ Class User extends CI_Model
    {
      return false;
    }
- }
- 
- function registre($nomusuari, $nomicognoms $password, $email)
- {
-	 $data = array(
-			'username'=> $nomusuari,
-			'Nom i cognoms'=> $nomicognoms,
-			'password'=> MD5($contrasenya),
-			'Email'=> $email
-			);
-	$this->db->insert('users', $data);
 }
-?>
+    
+ 
+ function registre()
+ {
+	$data=array(
+		'username'=>$this->input->post('username'),
+		'Nomicognoms'=>$this->input->post('nomicognoms'),
+		'password'=>md5($this->input->post('password')),
+		'Email'=>$this->input->post('email')
+  );
+  $this->db->insert('users',$data);
 
+ } 
+}
