@@ -20,9 +20,10 @@ jQuery(function($){
         // Components
         slide_links        : 'blank',    // Individual links for each slide (Options: false, 'num', 'name', 'blank')
         slides             : [    // Slideshow Images
-	var base_url = 'http://'localhost/recycling/assets/img/backgrounds/
                                  {image : 'http://localhost/recycling/assets/img/backgrounds/1.jpg'},
                                  {image : 'http://localhost/recycling/assets/img/backgrounds/2.jpg'},
+				 {image : 'http://localhost/recycling/assets/img/backgrounds/5.jpg'},	
+				 {image : 'http://localhost/recycling/assets/img/backgrounds/6.jpg'},		
                                  {image : 'http://localhost/recycling/assets/img/backgrounds/3.jpg'}
                              ]
 

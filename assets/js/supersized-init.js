@@ -22,6 +22,8 @@ jQuery(function($){
         slides             : [    // Slideshow Images
                                  {image : 'http://localhost/recycling/assets/img/backgrounds/1.jpg'},
                                  {image : 'http://localhost/recycling/assets/img/backgrounds/2.jpg'},
+				 {image : 'http://localhost/recycling/assets/img/backgrounds/5.jpg'},	
+				 {image : 'http://localhost/recycling/assets/img/backgrounds/6.jpg'},		
                                  {image : 'http://localhost/recycling/assets/img/backgrounds/3.jpg'}
                              ]
 
