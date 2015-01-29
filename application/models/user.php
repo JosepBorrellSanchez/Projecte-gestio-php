@@ -22,14 +22,9 @@ Class User extends CI_Model
 }
     
  
- function registre()
+ function registre($data)
  {
-	$data=array(
-		'username'=>$this->input->post('username'),
-		'Nomicognoms'=>$this->input->post('nomicognoms'),
-		'password'=>md5($this->input->post('password')),
-		'Email'=>$this->input->post('email')
-  );
+	
   $this->db->insert('users',$data);
 
  } 

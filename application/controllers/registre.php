@@ -24,16 +24,29 @@ $this->load->library('form_validation');
   $this->form_validation->set_rules('nomicognoms', 'Nom i cognoms', 'trim|required|');
   $this->form_validation->set_rules('email_address', 'El teu Email', 'trim|required|valid_email');
 
-  if($this->form_validation->run() == FALSE)
+ /*if($this->form_validation->run() == FALSE)
   {
 	redirect('welcome/index');
-  //$this->index();
-  }
-  else
-  {
-   $this->user->registre();
-   
-   redirect('welcome/index', 'refresh');
-  }
+	//error!
+  $this->index();
+  }*/
+  //else
+ // {
+	 //$username = $this->input->post('username');
+	  $data=array(
+		'username'=>$this->input->post('username'),
+		'Nomicognoms'=>$this->input->post('nomicognoms'),
+		'password'=>md5($this->input->post('password')),
+		'Email'=>$this->input->post('email')
+  );
+   $this->user->registre($data);
+   //redirect a "gracies per registrar-te, qui sigues... this load view i li paso la variable Username?
+   //$this->load->view('gracies', $data);
+   $this->gracies($data);
+   //redirect('welcome/index', 'refresh');
+  //}
  }
+ public function gracies($data){
+	 $this->load->view('gracies', $data);
+}
 }
