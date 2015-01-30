@@ -13,18 +13,24 @@
         <link rel="stylesheet" href="<?php echo base_url();?>assets/css/supersized.css">
         <link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
         <script type="text/javascript" src="<?php echo base_url();?>assets/js/form.js"></script>
+        <script>
+			
+function setFocusToTextBox(){
+    document.getElementById("email").focus();
+}
+</script>
         
  </head>
- <body>
+ <body onload='setFocusToTextBox()'>
    <div class="page-container">
-            <h1>Registre</h1>
+	   <h1>Registre</h1>
             <?php echo validation_errors(); ?>
 			<?php echo form_open('registre/registration');  ?>
-                <input type="text" name="username" class="username" placeholder="Nom d'usuari">
+                <input type="text" name="username" id="username" class="username" placeholder="Nom d'usuari" value='<?php echo $username;?>'>
                 <input type="password" name="password" class="password" placeholder="Paraula de pas">
                 <input type="password" name="con_password" class="con_password" placeholder="Confirma la paraula de pas">
-                <input type="text" name="nomicognoms" class="nomicognoms" placeholder="Nom i cognoms">
-                <input type="text" name="email" class="email" placeholder="Email">
+                <input type="text" name="nomicognoms" class="nomicognoms" placeholder="Nom i cognoms" value='<?php echo $Nomicognoms;?>'>
+                <input type="text" name="email" class="email" placeholder="Email" value='<?php echo $Email;?>'> Ho sento l'email ja està en ús.
                 <button type="submit">Registrar-se</button>
                 Ja tens un compte? entra <a href="<?php echo base_url('index.php/login')?>";>aquí</a>
                 <div class="error"><span>+</span></div>
@@ -37,4 +43,8 @@
         <script src="<?php echo base_url();?>assets/js/supersized-init.js"></script>
         <script src="<?php echo base_url();?>assets/js/scripts.js"></script>
  </body>
+
+ <!--<SCRIPT language="JavaScript">
+
+		alert('Ho sento, el nom d\'usuari ja existeix!');</SCRIPT> 	-->
 </html>

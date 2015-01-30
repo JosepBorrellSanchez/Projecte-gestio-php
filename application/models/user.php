@@ -27,5 +27,30 @@ Class User extends CI_Model
 	
   $this->db->insert('users',$data);
 
- } 
+ }
+ 
+ function compusuari($usuari){
+ 	$this->db->where('username', $usuari);
+	$query = $this->db->get('users');
+if($query->num_rows >= 1)
+{
+//ya existeix
+return false;
+}  
+//no existeix, es pot crear
+else{
+return true;}
+}
+function compemail($email){
+ 	$this->db->where('Email', $email);
+	$query = $this->db->get('users');
+if($query->num_rows >= 1)
+{
+//ya existeix
+return false;
+}  
+//no existeix, es pot crear
+else{
+return true;}
+}
 }

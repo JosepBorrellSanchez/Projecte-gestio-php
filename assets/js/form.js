@@ -28,22 +28,22 @@ function revisaremail(elemento) {
 
 
 function validar(form) {
-  if(form.nombre.value=="") { //Si este campo está vacío
+  if(form.username.value=="") { //Si este campo está vacío
     alert('No has escrit el nom de empresa'); // Mensaje a mostrar
     return false; //devolvemos un valor negativo
   }
   
-  if(form.ciudad.value=="") { //Si este campo está vacío
+  if(form.password.value=="") { //Si este campo está vacío
     alert('No has escrit la teva ciudat'); // Mensaje a mostrar
     return false; //devolvemos un valor negativo
   }
   
-  if(form.email.value=="") { //Si este campo está vacío
+  if(form.con_password.value=="") { //Si este campo está vacío
     alert('No has escrit el teu e-Mail'); // Mensaje a mostrar
     return false; //devolvemos un valor negativo
   }
   
-  if(form.textarea.value=="") { //Si este campo está vacío
+  if(form.nomicognoms.value=="") { //Si este campo está vacío
     alert('No has escrit cap missatge'); // Mensaje a mostrar
     return false; //devolvemos un valor negativo
   }

@@ -16,6 +16,7 @@ jQuery(document).ready(function() {
             $(this).find('.error').fadeIn('fast', function(){
                 $(this).parent().find('.username').focus();
             });
+		alert('No has escrit el nom d\'usuari'); // Mensaje a mostrar
             return false;
         }
         if(password == '') {
@@ -25,35 +26,52 @@ jQuery(document).ready(function() {
             $(this).find('.error').fadeIn('fast', function(){
                 $(this).parent().find('.password').focus();
             });
+		alert('No has escrit la password');
             return false;
         }
         if(con_password == '') {
             $(this).find('.error').fadeOut('fast', function(){
-                $(this).css('top', '96px');
+                $(this).css('top', '165px');
             });
             $(this).find('.error').fadeIn('fast', function(){
                 $(this).parent().find('.con_password').focus();
             });
+		alert('No has escrit la confirmació de password');
             return false;
         }
+
+	if(con_password != password) {
+            $(this).find('.error').fadeOut('fast', function(){
+                $(this).css('top', '165px');
+            });
+            $(this).find('.error').fadeIn('fast', function(){
+                $(this).parent().find('.con_password').focus();
+            });
+		alert('Les contrasenyes no coincideixen');
+            return false;
+        }
+
+
         
         if(nomicognoms == '') {
             $(this).find('.error').fadeOut('fast', function(){
-                $(this).css('top', '27px');
+                $(this).css('top', '234px');
             });
             $(this).find('.error').fadeIn('fast', function(){
                 $(this).parent().find('.nomicognoms').focus();
             });
+		alert('No has escrit el nom i cognom');
             return false;
         }
         
         if(email == '') {
             $(this).find('.error').fadeOut('fast', function(){
-                $(this).css('top', '27px');
+                $(this).css('top', '303px');
             });
             $(this).find('.error').fadeIn('fast', function(){
                 $(this).parent().find('.email').focus();
             });
+		alert('No has escrit l\'email');
             return false;
         }
         
