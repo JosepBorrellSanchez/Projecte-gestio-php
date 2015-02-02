@@ -30,6 +30,6 @@
         <script src="<?php echo base_url();?>assets/js/jquery-1.8.2.min.js"></script>
         <script src="<?php echo base_url();?>assets/js/supersized.3.2.7.min.js"></script>
         <script src="<?php echo base_url();?>assets/js/supersized-init.js"></script>
-        <script src="<?php echo base_url();?>assets/js/scripts.js"></script>
+        <script src="<?php echo base_url();?>assets/js/scriptsusuari.js"></script>
  </body>
 </html>
