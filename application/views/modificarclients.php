@@ -14,7 +14,7 @@
             $(document).ready(function() {
                 $("#provincias").change(function(){
                     $.ajax({
-                    url:"http://localhost/recycling/index.php/welcome/buildDropCities",    
+                    url:"<?php echo base_url();?>index.php/welcome/buildDropCities",    
                     data: {id: $(this).val()},
                     type: "POST",
                     success: function(data){
@@ -27,7 +27,7 @@
             $(document).ready(function() { 
                 $("#cityDrp").change(function(){
                     $.ajax({
-                    url:"http://localhost/recycling/index.php/welcome/carregarCP",    
+                    url:"<?php echo base_url();?>index.php/welcome/carregarCP",    
                     data: {idpoblacio: $(this).val()},
                     type: "POST",
                     success: function(data){

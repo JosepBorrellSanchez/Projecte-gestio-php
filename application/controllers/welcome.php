@@ -46,7 +46,7 @@ parent::__construct();
 	{
 		if($this->session->userdata('logged_in'))
    {
-		$data = $this->model_clients->getclient($id);	
+		$data = $this->model_clients->getclient();	
 		$this->load->view('table', $data);}
 		else
    {
