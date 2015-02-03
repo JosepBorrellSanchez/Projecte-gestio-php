@@ -33,6 +33,7 @@
 <th>Compte Contable</th>
 <th>Nom Fiscal</th>
 <th>Nom Comercial</th>
+<th>NIF</th>
 <th>Població</th>
 <th>Provincia</th>
 <th>CP</th>
@@ -50,6 +51,7 @@
 <td><?php echo $llistarclients['Comptecontable']; ?></td>
 <td><?php echo $llistarclients['Nomfiscal']; ?></td>
 <td><?php echo $llistarclients['Nomcomercial']; ?></td>
+<td><?php echo $llistarclients['NIF']; ?></td>
 <td><?php echo $llistarclients['poblacion']; ?></td>
 <td><?php echo $llistarclients['Provincia']; ?></td>
 <td><?php echo $llistarclients['CodiPostal']; ?></td>
