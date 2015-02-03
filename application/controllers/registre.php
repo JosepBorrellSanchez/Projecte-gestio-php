@@ -19,13 +19,14 @@ class registre extends CI_Controller {
 $this->load->library('form_validation');
   // field name, error message, validation rules
   //$this->form_validation->set_rules('username', 'Usuari', 'trim|required|min_length[4]|xss_clean|callback_username_check');
-  //$this->form_validation->set_rules('password', 'Paraula de pas', 'trim|required|min_length[4]|max_length[32]');
-  //$this->form_validation->set_rules('con_password', 'Confirma la paraula de pas', 'trim|required|matches[password]');
-  //$this->form_validation->set_rules('nomicognoms', 'Nom i cognoms', 'trim|required|');
+  $this->form_validation->set_rules('password', 'Paraula de pas', 'trim|required|min_length[4]|max_length[32]');
+  $this->form_validation->set_rules('con_password', 'Confirma la paraula de pas', 'trim|required|matches[password]');
+  $this->form_validation->set_rules('nomicognoms', 'Nom i cognoms', 'trim|required|');
   //$this->form_validation->set_rules('email_address', 'El teu Email', 'trim|required|valid_email');
+  
+$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 
- //if($this->form_validation->run() == TRUE)
-  //{
+ 
 	  $username = $this->input->post('username');
 	  $email = $this->input->post('email');
 	  $data=array(
@@ -34,6 +35,8 @@ $this->load->library('form_validation');
 		'password'=>md5($this->input->post('password')),
 		'Email'=>$this->input->post('email')
   );
+  if($this->form_validation->run() == TRUE)
+  {
   
 	  if($this->user->compusuari($username) == TRUE){
 		  if($this->user->compemail($email) == TRUE){
@@ -55,6 +58,10 @@ $this->load->library('form_validation');
 		//$this->load->view('error',$data);
 		}
 		
+	}
+	else{
+		$this->erroremail($data);
+	}
 	
 		
  }
@@ -68,6 +75,11 @@ public function errorusuari ($data) {
 }
 
 public function erroremail ($data) {
+	
+	$this->load->view('erroremail',$data);
+}
+
+public function emailinvalid($data) {
 	
 	$this->load->view('erroremail',$data);
 }
