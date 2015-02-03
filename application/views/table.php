@@ -5,6 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Borrells Insertar</title>
     <?php include("capçalera.php"); ?>
+    
+    <!-- table tools -->	
+<script type="text/javascript">
+$(document).ready( function () {
+var oTable = $('#1').dataTable( {
+"sScrollY": "300px",
+"sScrollX": "100%",
+"sScrollXInner": "100%",
+"bScrollCollapse": true,
+"bPaginate": true,
+"sDom":'TCRlfrtip',
+"oTableTools": {
+"sSwfPath": "<?php echo base_url('assets/media/swf/copy_csv_xls_pdf.swf');?>"
+}
+} );
+new FixedColumns( oTable );
+});
+</script>
+
+<!--Table Tools-->
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url('assets/media/js/ZeroClipboard.js')?>"></script>
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url('assets/media/js/TableTools.js')?>"></script>
+<style type="text/css" title="currentStyle">
+@import "<?php echo base_url('assets/media/css/TableTools.css');?>";
+@import "<?php echo base_url('assets/media/css/TableTools_JUI.css');?>";
+</style>
+<!-- colreorder-->
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url() ?>assets/media/js/ColReorder.js"></script>
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url() ?>assets/media/css/ColReorder.css"></script>
+<!-- fixed header -->
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url() ?>assets/media/js/FixedHeader.js"></script>
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url() ?>assets/media/js/FixedHeader.min.js"></script>
+<!-- colvis -->
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url() ?>assets/media/js/ColVis.js"></script>
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url() ?>assets/media/js/ColVis.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url() ?>/assets/media/css/ColVis.css"></script>
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url() ?>/assets/media/css/ColVisAlt.css"></script>
+<!-- fixed columns-->
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url() ?>assets/media/js/FixedColumns.js"></script>
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url() ?>assets/media/js/FixedColumns.min.js"></script>
 </head>
 <body>
 	
@@ -25,7 +65,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <table class="table table-striped table-bordered table-hover" id="1">
 									<a href="afegir"><button class="btn btn-success" type="button">Afegir un nou client</button></a>
                                    <thead>
 <tr>
