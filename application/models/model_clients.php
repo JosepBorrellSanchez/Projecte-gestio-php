@@ -32,7 +32,7 @@ $this->load->library('session');
 			$this->db->from('Clients as A');
 			$this->db->join('poblaciones as B','A.Poblacio=B.idpoblacion');
 			$this->db->join('provincias as C','A.Provincia=C.idprovincia');
-			$this->db->where('nomusuari', $id2);
+			$this->db->where('id_usuari', $id2);
 			$query = $this->db->get();
 			
 			return $query->result_array();
@@ -59,10 +59,11 @@ $this->load->library('session');
 
 
 		// Tots els inserts que inserten dades
-		function insertaClient($nif,$comptecontable,$nomfiscal,$nomcomercial,$poblacio, $cp, $provincia,$direccio,$contacte,$email,$telfixe,$telmobil,$fax,$observacions)
+		function insertaClient($nif, $id2, $comptecontable,$nomfiscal,$nomcomercial,$poblacio, $cp, $provincia,$direccio,$contacte,$email,$telfixe,$telmobil,$fax,$observacions)
 		{
 			$data = array(
 			'Codi'=> $codi,
+			'id_usuari'=> $id2,
 			'NIF'=> $nif,
 			'Comptecontable'=> $comptecontable,
 			'Nomfiscal'=> $nomfiscal,

@@ -19,7 +19,7 @@ parent::__construct();
 		if($this->session->userdata('logged_in'))
    {
      $session_data = $this->session->userdata('logged_in');
-     $data['username'] = $session_data['username'];
+     //$data['username'] = $session_data['username'];
      $dia =  date("d/m/Y");
      //$dia = "28/01/2015";
 		$data = array(
@@ -47,7 +47,8 @@ parent::__construct();
 		if($this->session->userdata('logged_in'))
    {
 	   $id = $this->session->userdata('logged_in');
-	    $id2 = $id['username'];
+	    $id2 = $id['id'];
+	    //var_dump($id2);
 	   // $id = $this->session->userdata('username');
 		$data = $this->model_clients->getclient($id2);	
 		$this->load->view('table', $data);}
@@ -138,9 +139,12 @@ parent::__construct();
 	}
 
 	 function insertarclients() {
+		 
 if($this->session->userdata('logged_in'))
    {
-		
+	   $id = $this->session->userdata('logged_in');
+	    $id2 = $id['id'];
+		var_dump ($id2);
 		$nif = $this->input->post('NIF');
 		$comptecontable = $this->input->post('CompteContable');
 		$nomfiscal = $this->input->post('NomFiscal');
@@ -155,7 +159,7 @@ if($this->session->userdata('logged_in'))
 		$telmobil = $this->input->post('TelMobil');
 		$fax = $this->input->post('Fax');
 		$observacions = $this->input->post('Observacions');
-		$this->model_clients->insertaClient($nif, $comptecontable, $nomfiscal, $nomcomercial, $poblacio, $cp, $provincia, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions);
+		$this->model_clients->insertaClient($nif, $id2, $comptecontable, $nomfiscal, $nomcomercial, $poblacio, $cp, $provincia, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions);
 		redirect('welcome/index');}
 		else
    {
