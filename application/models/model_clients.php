@@ -4,6 +4,7 @@ function __construct()
 {
 parent::__construct();
 $this->load->database();
+$this->load->library('session');
 }
 
 
@@ -26,11 +27,12 @@ $this->load->database();
 		}
 
 
-		function getclient() {
+		function getclient($id2) {
 			$this->db->select('A.Codi,A.NIF,A.Comptecontable,A.Nomfiscal,A.Nomcomercial,B.poblacion,C.Provincia,A.CodiPostal,A.Direccio, A.Contacte, A.Email, A.Telfixe, A.Telmobil, A.Fax, A.Observacions');
 			$this->db->from('Clients as A');
 			$this->db->join('poblaciones as B','A.Poblacio=B.idpoblacion');
 			$this->db->join('provincias as C','A.Provincia=C.idprovincia');
+			$this->db->where('nomusuari', $id2);
 			$query = $this->db->get();
 			
 			return $query->result_array();
