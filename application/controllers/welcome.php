@@ -9,6 +9,8 @@ parent::__construct();
 	$this->load->model('model_poblacio_provincia');
 	$this->load->model('model_portada');
 	$this->load->library('session');
+	$this->id = $this->session->userdata('logged_in');
+	$this->id2 = $this->id['id'];
 } 
 	/**
 	 * Index Page for this controller.
@@ -20,12 +22,16 @@ parent::__construct();
    {
      $session_data = $this->session->userdata('logged_in');
      //$data['username'] = $session_data['username'];
-     $dia =  date("d/m/Y");
+     //$dia =  date("d/m/Y"); 
+     $ididia = array (
+		"id" => $this->id2,
+		"dia" => date("d/m/Y") );
      //$dia = "28/01/2015";
+     
 		$data = array(
 			"dataavui" => date("Y/m/d"),
 			//"quantescites" => $this->model_portada->getcitesdianum($dia),
-			"cites" => $this->model_portada->getcitesdia($dia)
+			"cites" => $this->model_portada->getcitesdia($ididia)
 			);
 	 //$data = $this->model_portada->gettotescites();
 	 //$citesavui = $this->model_portada->getcitesdianum($diaavui);
@@ -46,11 +52,9 @@ parent::__construct();
 	{
 		if($this->session->userdata('logged_in'))
    {
-	   $id = $this->session->userdata('logged_in');
-	    $id2 = $id['id'];
 	    //var_dump($id2);
 	   // $id = $this->session->userdata('username');
-		$data = $this->model_clients->getclient($id2);	
+		$data = $this->model_clients->getclient($this->id2);	
 		$this->load->view('table', $data);}
 		else
    {
