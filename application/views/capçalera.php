@@ -31,10 +31,17 @@
                 </button>
                 <a class="navbar-brand" href="<?php echo base_url()?>";>Administració</a> 
             </div>
+            
+			
             <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> <a href="<?php echo base_url('index.php/welcome/logout')?>" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;">
+<?$nom = $this->session->userdata('logged_in');
+			$noom = $nom['username'];
+			echo "Benvingut senyor ".$noom;
+			?>
+ <a href="<?php echo base_url('index.php/welcome/logout')?>" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
            <nav class="navbar-default navbar-side" role="navigation">

@@ -82,8 +82,16 @@ parent::__construct();
 	{
 	if($this->session->userdata('logged_in'))
    {
+	   $data = $this->model_clients->getclientcodi($codi, $this->id2)->row();
+	   if(sizeof($data)==1){
+           	
+           	
 		$cita = $this->model_clients->getcita($codi);
 		$this->load->view('agenda', $cita);}
+		else {
+				$this->index();
+			}
+		}
 		else
    {
      //If no session, redirect to login page
@@ -133,8 +141,15 @@ parent::__construct();
 	public function insertavisita($codi) {
 		if($this->session->userdata('logged_in'))
    {
-		$data = $this->model_clients->getclientcodi($codi)->row();
-		$this->load->view('insertarcites', $data);}
+		$data = $this->model_clients->getclientcodi($codi, $this->id2)->row();
+		
+		if(sizeof($data)==1){
+           		$this->load->view('insertarcites', $data);}
+           	else {
+				$this->index();
+			}
+		}
+		
 		else
    {
      //If no session, redirect to login page
@@ -146,7 +161,17 @@ parent::__construct();
 		 
 if($this->session->userdata('logged_in'))
    {
-	   $id = $this->session->userdata('logged_in');
+	   
+  $this->form_validation->set_rules('NIF', 'NIF', 'required|');
+  $this->form_validation->set_rules('NomComercial', 'NomComercial', 'required|');
+  $this->form_validation->set_rules('provincias', 'Provincia', 'required|');
+  $this->form_validation->set_rules('cityDrp', 'Ciutat', 'required|');
+  //$this->form_validation->set_rules('Telfixe', 'Telfixe', 'required|decimal');
+  $this->form_validation->set_rules('Email', 'Email', 'trim|valid_email');
+
+if($this->form_validation->run() == TRUE)
+  {
+	    $id = $this->session->userdata('logged_in');
 	    $id2 = $id['id'];
 		var_dump ($id2);
 		$nif = $this->input->post('NIF');
@@ -167,9 +192,12 @@ if($this->session->userdata('logged_in'))
 		redirect('welcome/index');}
 		else
    {
+	    $this->afegir();
+   }}
      //If no session, redirect to login page
-     redirect('login', 'refresh');
-   }
+     else{
+     redirect('login', 'refresh');}
+   
 }
 
 	function insertarcites($codi) {
@@ -273,7 +301,10 @@ public function upload() {
 	function EliminarClients($codi) {
 		if($this->session->userdata('logged_in'))
    {
-		$this->model_clients->eliminarClients($codi);
+	   $data = array (
+		"id" => $this->id2,
+		"codi" => $codi );
+		$this->model_clients->eliminarClients($data);
 		redirect('welcome/taula');}
 		else
    {
@@ -297,16 +328,21 @@ public function upload() {
 	}
 	 function carregarClients($codi)  {
 		 if($this->session->userdata('logged_in'))
+		 
    {
-	 	
-		//$data = $this->model_clients->getclientcodi($codi)->row();
+	$id = $this->id2; 	
 		
 		$data = array(
                "provincias" => $this->model_poblacio_provincia->getProvincias(),
-               "clients" => $this->model_clients->getclientcodi($codi)->row()
+               "clients" => $this->model_clients->getclientcodi($codi, $id)->row(),
             );
-            
-		$this->load->view('modificarclients', $data);}
+            //var_dump($data['clients']);
+           if(sizeof($data['clients'])==1){
+           		$this->load->view('modificarclients', $data);}
+           	else {
+				$this->index();
+			}
+		}
 		else
    {
      //If no session, redirect to login page
@@ -361,10 +397,11 @@ function carregarCites($id_agenda)  {
 		$telmobil = $this->input->post('TelMobil');
 		$fax = $this->input->post('Fax');
 		$observacions = $this->input->post('Observacions');
+		$id = $this->id2;
 		if ($poblacio == null){
-			$this->model_clients->modificarClients($codi, $nif, $comptecontable, $nomfiscal, $nomcomercial, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions);}
+			$this->model_clients->modificarClients($codi, $nif, $comptecontable, $nomfiscal, $nomcomercial, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions, $id2);}
 		else{
-		$this->model_clients->modificarClientsTot($codi, $nif, $comptecontable, $nomfiscal, $nomcomercial, $provincia, $poblacio, $codipostal, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions);
+		$this->model_clients->modificarClientsTot($codi, $nif, $comptecontable, $nomfiscal, $nomcomercial, $provincia, $poblacio, $codipostal, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions, $id2);
 			//$this->load->model('model_clients');
 			}
 		
@@ -388,6 +425,8 @@ function carregarCites($id_agenda)  {
 	public function generar($codi) {
 		if($this->session->userdata('logged_in'))
    {
+	   $data = $this->model_clients->getclientcodi($codi, $this->id2)->row();
+	   if(sizeof($data)==1){
         $this->load->library('Pdf');
         $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
@@ -436,7 +475,7 @@ function carregarCites($id_agenda)  {
         $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
  
 // Establecemos el contenido para imprimir
-        $data = $this->model_clients->getclientcodi($codi)->row();	
+        $data = $this->model_clients->getclientcodi($codi, $this->id2)->row();	
 		//$this->load->view('table', $data);
         //preparamos y maquetamos el contenido a crear
        
@@ -480,8 +519,11 @@ function carregarCites($id_agenda)  {
 // Este método tiene varias opciones, consulte la documentación para más información.
         $nombre_archivo = utf8_decode("Fitxa del client ".$nomfiscal.".pdf");
         $pdf->Output($nombre_archivo, 'I');}
-        else
-   {
+        else {
+				$this->index();
+			}
+		}
+        else {
      //If no session, redirect to login page
      redirect('login', 'refresh');
    }

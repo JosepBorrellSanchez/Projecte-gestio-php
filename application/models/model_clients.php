@@ -38,10 +38,11 @@ $this->load->library('session');
 			return $query->result_array();
 		}
 
-		function getclientcodi($codi) {
+		function getclientcodi($codi, $id2) {
 			$this->db->select('A.Codi,A.NIF,A.Comptecontable,A.Nomfiscal,A.Nomcomercial,B.poblacion,C.Provincia, A.CodiPostal ,A.Direccio, A.Contacte, A.Email, A.Telfixe, A.Telmobil, A.Fax, A.Observacions');
 			$this->db->from('Clients as A');
 			$this->db->where('A.Codi',$codi);
+			$this->db->where('id_usuari', $id2);
 			$this->db->join('poblaciones as B','A.Poblacio=B.idpoblacion');
 			$this->db->join('provincias as C','A.Provincia=C.idprovincia');
 			//$query = $this->db->get('Clients');
@@ -82,15 +83,15 @@ $this->load->library('session');
 		}
 
 		// Tots els delete per eliminar les dades
-		function eliminarClients($codi) {
-			$this->db->delete('Clients', array('Codi' => $codi));
+		function eliminarClients($data) {
+			$this->db->delete('Clients', array('Codi' => $data['codi'], 'id_usuari' => $data['id']));
 		}
 		function eliminarCitas($id) {
 			$this->db->delete('Agenda', array('id_agenda' => $id));
 		}
 		// Tots els update
 
-		function modificarClients($codi,$nif,$comptecontable,$nomfiscal,$nomcomercial,$direccio,$contacte,$email,$telfixe,$telmobil,$fax){
+		function modificarClients($codi,$nif,$comptecontable,$nomfiscal,$nomcomercial,$direccio,$contacte,$email,$telfixe,$telmobil,$fax, $id2){
 			$data = array(
 			'Codi'=> $codi,
 			'NIF'=> $nif,
@@ -104,10 +105,11 @@ $this->load->library('session');
 			'Telmobil'=> $telmobil,
 			'Fax'=> $fax);
 			$this->db->where('Codi',$codi);
+			$this->db->where('id_usuari',$id2);
 			$this->db->update('Clients', $data);
 		}
 		
-		function modificarClientsTot($codi,$nif,$comptecontable,$nomfiscal,$nomcomercial,$provincia,$poblacio,$codipostal,$direccio,$contacte,$email,$telfixe,$telmobil,$fax){
+		function modificarClientsTot($codi,$nif,$comptecontable,$nomfiscal,$nomcomercial,$provincia,$poblacio,$codipostal,$direccio,$contacte,$email,$telfixe,$telmobil,$fax, $id2){
 			$data = array(
 			'Codi'=> $codi,
 			'NIF'=> $nif,
@@ -124,6 +126,7 @@ $this->load->library('session');
 			'Telmobil'=> $telmobil,
 			'Fax'=> $fax);
 			$this->db->where('Codi',$codi);
+			$this->db->where('id_usuari',$id2);
 			$this->db->update('Clients', $data);
 		}
 		
