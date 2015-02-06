@@ -136,6 +136,9 @@ font-size: 16px;">
                     <li>
                         <a href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url('index.php/usuari/perfil');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
+                    </li>
 					<?} ?>
                 </ul>
             </div>          
