@@ -37,8 +37,8 @@
 padding: 15px 50px 5px 50px;
 float: right;
 font-size: 16px;">
-<?$nom = $this->session->userdata('logged_in');
-			$noom = $nom['username'];
+<?$sesio = $this->session->userdata('logged_in');
+			$noom = $sesio['username'];
 			echo "Benvingut senyor ".$noom;
 			?>
  <a href="<?php echo base_url('index.php/welcome/logout')?>" class="btn btn-danger square-btn-adjust">Logout</a> </div>
@@ -48,7 +48,7 @@ font-size: 16px;">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 				<li class="text-center">
-                     <img src="<?php echo base_url();?>assets/img/logo.png" class="user-image img-responsive"/>
+                     <img src="<?echo $sesio['foto']?>" class="user-image img-responsive"/>
 					</li>	
 					
 					<? $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>
@@ -65,6 +65,9 @@ font-size: 16px;">
                     <li>
                         <a href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url('index.php/usuari/');?>"><i class="fa fa-user fa-3x"></i> Perfil</a>
+                    </li>
                     <? break; ?>
                     
                     <?
@@ -76,6 +79,9 @@ font-size: 16px;">
                     <li>
                         <a href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url('index.php/usuari/');?>"><i class="fa fa-user fa-3x"></i> Perfil</a>
+                    </li>
                     <? break; ?>
                     
                     <? case "http://localhost/recycling/index.php/welcome/taula":?>
@@ -85,6 +91,9 @@ font-size: 16px;">
                     </li>
                     <li>
                         <a class="active-menu" href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url('index.php/usuari/');?>"><i class="fa fa-user fa-3x"></i> Perfil</a>
                     </li>
                     <? break; ?>
                     
@@ -96,6 +105,9 @@ font-size: 16px;">
                     <li>
                         <a href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url('index.php/usuari/');?>"><i class="fa fa-user fa-3x"></i> Perfil</a>
+                    </li>
                     <? break; ?>
                     
                     <? case "http://localhost/recycling/index.php/":?>
@@ -105,6 +117,9 @@ font-size: 16px;">
                     </li>
                     <li>
                         <a href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url('index.php/usuari/');?>"><i class="fa fa-user fa-3x"></i> Perfil</a>
                     </li>
                     <? break; ?>
                     
@@ -116,15 +131,33 @@ font-size: 16px;">
                     <li>
                         <a href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url('index.php/usuari/');?>"><i class="fa fa-user fa-3x"></i> Perfil</a>
+                    </li>
                     <? break; ?>
-                    
-                    <? case "http://localhost/recycling/":?>
+                     <? case "http://localhost/recycling/":?>
 					
 					<li>
                         <a class="active-menu" href="<?php echo base_url('index.php');?>"><i class="fa fa-desktop fa-3x"></i> Portada</a>
                     </li>
                     <li>
                         <a href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url('index.php/usuari/');?>"><i class="fa fa-user fa-3x"></i> Perfil</a>
+                    </li>
+                    <? break; ?>
+                    
+                    <? case "http://localhost/recycling/index.php/usuari":?>
+					
+					<li>
+                        <a href="<?php echo base_url('index.php');?>"><i class="fa fa-desktop fa-3x"></i> Portada</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
+                    </li>
+                    <li>
+                        <a class="active-menu" href="<?php echo base_url('index.php/usuari/');?>"><i class="fa fa-user fa-3x"></i> Perfil</a>
                     </li>
                     <? break; ?>
                     
@@ -137,7 +170,7 @@ font-size: 16px;">
                         <a href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('index.php/usuari/perfil');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
+                        <a href="<?php echo base_url('index.php/usuari/perfil');?>"><i class="fa fa-user fa-3x"></i> Perfil</a>
                     </li>
 					<?} ?>
                 </ul>

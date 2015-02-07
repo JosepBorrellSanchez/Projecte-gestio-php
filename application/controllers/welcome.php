@@ -20,6 +20,7 @@ parent::__construct();
 	{
 		if($this->session->userdata('logged_in'))
    {
+	   var_dump($this->session->userdata('logged_in'));
      $session_data = $this->session->userdata('logged_in');
      //$data['username'] = $session_data['username'];
      //$dia =  date("d/m/Y"); 
@@ -99,6 +100,8 @@ parent::__construct();
    }
 
 	}
+	
+	
 
 	public function buildDropCities()
     {
