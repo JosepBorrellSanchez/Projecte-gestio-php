@@ -3,7 +3,7 @@ Class User extends CI_Model
 {
  function login($username, $password)
  {
-   $this -> db -> select('id, username, password, foto, email');
+   $this -> db -> select('id, username, Nomicognoms, password, foto, email');
    $this -> db -> from('users');
    $this -> db -> where('username', $username);
    $this -> db -> where('password', MD5($password));
@@ -53,4 +53,13 @@ return false;
 else{
 return true;}
 }
+
+function pujarFoto($file_name, $id) {
+		//agafo els valors de la foto que s’ha pujat, i inserto a la base de dades. 
+		 $data = array('foto'=> $file_name);
+		  
+		   $this->db->where('id',$id);
+		   $this->db->update('users', $data); 
+		   }
+		   
 }
