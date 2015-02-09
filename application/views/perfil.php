@@ -5,7 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Borrells Portada</title>
     <?php include("capçalera.php"); ?>
- 
+ <script>
+ function mostrarDiv() {
+   document.getElementById('welcomeDiv').style.display = "block";
+}
+function canviarEmail() {
+   document.getElementById('canvimailpassword').style.display = "block";
+   document.getElementById('canvimail').style.display = "block";
+}
+function canviarPassword() {
+   document.getElementById('canvipassword').style.display = "block";
+   document.getElementById('canvipasswordnova').style.display = "block";
+   document.getElementById('canvipasswordnovaconf').style.display = "block";
+}
+</script>
 </head>
 
 
@@ -23,18 +36,27 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- Advanced Tables -->
-                    <center>  <h2>  El teu nom d'usuari : <?echo $sesio['username'];?></h2></center>
-                    <center>  <h2>  El teu nom complert: <?echo $sesio['Nomicognoms'];?></h2></center>
-                    <center>  <h2>  El teu Email : <?echo $sesio['email'];?></h2></center>
+                    <center>  <h3>  El teu nom d'usuari : <?echo $sesio['username'];?></h3></center>
+                    <center>  <h3>  El teu nom complert: <?echo $sesio['Nomicognoms'];?></h3></center>
+                    <center>  <h3>  El teu Email : <?echo $sesio['email'];?> <button onclick="canviarEmail()" class="btn btn-warning" name="modemail">Modificar</button></h3></center>
+                    <center><input id="canvimailpassword" type="password" name="password" class="password" placeholder="Paraula de pas" style="display:none"></center>
+                    <center><input id="canvimail" type="password" name="email" class="text" placeholder="Nou email" style="display:none"></center>
                     <center> <img src="<?echo $sesio['foto']?>" class="user-image img-responsive"/></center>
+                    <button onclick="canviarPassword()" class="btn btn-warning" name="canvipassword">Canvia la paraula de pas</button>
+                    
+                    <input id="canvipassword" name="canvipassword"> Actual paraula de pas
+                    <button onclick="canviarPassword()" class="btn btn-warning" name="canvipasswordnova">Vova paraula de pas</button>
+                    <button onclick="canviarPassword()" class="btn btn-warning" name="canvipasswordnovaconf">Confirma la nova paraula de pas</button>
+                    
                      <? echo form_open_multipart('usuari/DoUpload');?>
 					<center><label for="file"> Canvia la teva foto</label></center>
 					<p>
 					<center><input type="file" name="foto" value="Envia" size="50" /></p></center>
+					
 					<center><p><button type="submit" class="btn btn-success" name="foto">Acceptar</button></p></center>
                     <!--End Advanced Tables -->
                 </div>
-                <center><h3><a href="<?php echo base_url('index.php/usuari/modifica');?>"> Modifica les teves dades</a></h3></center>
+                <?//href="<?php echo base_url('index.php/usuari/modifica');"> Modifica les teves dades</a></h3></center>?>
             </div>
                 <!-- /. ROW  -->
         </div>
