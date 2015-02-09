@@ -61,5 +61,12 @@ function pujarFoto($file_name, $id) {
 		   $this->db->where('id',$id);
 		   $this->db->update('users', $data); 
 		   }
+	
+function getDades($id) {
+	$this->db->where('id', $id);
+	$query= $this->db->get('users');
+	return $query->result_array();
+	
+}	
 		   
 }

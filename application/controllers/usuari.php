@@ -16,7 +16,9 @@ parent::__construct();
 	{
 		if($this->session->userdata('logged_in'))
    {
-	   var_dump($this->sesio);
+	   //var_dump($this->sesio);
+	   $data=$this->user->getDades($this->sesio['id']);
+	   //var_dump($data);
      $this->load->view('perfil');
    }
    else
