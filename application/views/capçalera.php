@@ -170,7 +170,7 @@ font-size: 16px;">
                         <a href="<?php echo base_url('index.php/welcome/taula');?>"><i class="fa fa-table fa-3x"></i> Llista</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('index.php/usuari/perfil');?>"><i class="fa fa-user fa-3x"></i> Perfil</a>
+                        <a href="<?php echo base_url('index.php/usuari/');?>"><i class="fa fa-user fa-3x"></i> Perfil</a>
                     </li>
 					<?} ?>
                 </ul>

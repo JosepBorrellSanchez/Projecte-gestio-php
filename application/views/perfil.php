@@ -42,11 +42,11 @@ function canviarPassword() {
                     <center><input id="canvimailpassword" type="password" name="password" class="password" placeholder="Paraula de pas" style="display:none"></center>
                     <center><input id="canvimail" type="password" name="email" class="text" placeholder="Nou email" style="display:none"></center>
                     <center> <img src="<?echo $sesio['foto']?>" class="user-image img-responsive"/></center>
-                    <button onclick="canviarPassword()" class="btn btn-warning" name="canvipassword">Canvia la paraula de pas</button>
+                    <center><button onclick="canviarPassword()" class="btn btn-warning" name="canvipassword">Canvia la paraula de pas</button></center>
                     
-                    <input id="canvipassword" name="canvipassword"> Actual paraula de pas
-                    <button onclick="canviarPassword()" class="btn btn-warning" name="canvipasswordnova">Vova paraula de pas</button>
-                    <button onclick="canviarPassword()" class="btn btn-warning" name="canvipasswordnovaconf">Confirma la nova paraula de pas</button>
+                    <center><input id="canvipassword" name="canvipassword" placeholder="Actual paraula de pas" style="display:none"></center>
+                    <center><input id="canvipasswordnova" name="canvipasswordnova" placeholder="Nova paraula de pas" style="display:none"></center>
+                    <center><input id="canvipasswordnovaconf" name="canvipasswordnovaconf" placeholder="Confirma la nova paraula de pas" style="display:none"></center>
                     
                      <? echo form_open_multipart('usuari/DoUpload');?>
 					<center><label for="file"> Canvia la teva foto</label></center>
