@@ -54,6 +54,23 @@ else{
 return true;}
 }
 
+function compassword($id){
+	
+	$this->db->select('password');
+	$this->db->from('users');
+ 	$this->db->where('id', $id);
+	$query = $this->db->get();
+	return $query->row();
+}
+
+function modificarPassword($id, $password){
+	$data=array(
+	'password'=> $password);
+	
+ 	$this->db->where('id', $id);
+ 	$this->db->update('users', $data);
+}
+
 function pujarFoto($file_name, $id) {
 		//agafo els valors de la foto que s’ha pujat, i inserto a la base de dades. 
 		 $data = array('foto'=> $file_name);

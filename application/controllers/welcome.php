@@ -431,6 +431,7 @@ function carregarCites($id_agenda)  {
 	   $data = $this->model_clients->getclientcodi($codi, $this->id2)->row();
 	   if(sizeof($data)==1){
         $this->load->library('Pdf');
+       // redefine ('PDF_HEADER_LOGO', './application/fotos/josep.jpg');
         $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('Borrells');
@@ -453,6 +454,7 @@ function carregarCites($id_agenda)  {
         $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
         $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
         $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+        //$pdf->Image('./application/fotos/josep.jpg', 15, 140, 75, 113, 'JPG', 'http://www.tcpdf.org', '', true, 150, '', false, false, 1, false, false, false);
  
 // se pueden modificar en el archivo tcpdf_config.php de libraries/config
         $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);

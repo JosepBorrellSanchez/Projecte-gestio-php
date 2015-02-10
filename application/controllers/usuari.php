@@ -89,7 +89,39 @@ parent::__construct();
      redirect('login', 'refresh');}
 	}
 	
-	
+	Public function CanviPassword(){
+		$this->load->library('form_validation');
+
+		$pass = $this->input->post('canvipassword');
+		$passnova = $this->input->post('canvipasswordnova');
+		$passnovacomp = $this->input->post('canvipasswordnovaconf');
+		$pw=$this->user->compassword($this->sesio['id']);
+		
+		if(MD5($pass) == $pw->password) {
+		//var_dump(MD5($pass));
+		//var_dump($pw['password']);
+		
+		$this->form_validation->set_rules('canvipasswordnova', 'Nova paraula de pas', 'trim|required|min_length[4]|max_length[32]');
+		$this->form_validation->set_rules('canvipasswordnovaconf', 'Confirma la nova paraula de pas', 'trim|required|matches[canvipasswordnova]');
+		
+		if($this->form_validation->run() == TRUE)
+  {
+		
+		$this->user->modificarPassword($this->sesio['id'], MD5($passnova));
+		redirect ('login', 'refresh');
+		}
+		
+		else{
+			redirect('welcome/index', 'refresh');
+		}
+		}
+		else{
+			redirect('welcome/taula', 'refresh');
+		}
+	}
+		
+		//var_dump($this->user->compassword($this->sesio['id']));
+		
 }
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */
