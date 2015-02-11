@@ -119,6 +119,36 @@ parent::__construct();
 			redirect('welcome/taula', 'refresh');
 		}
 	}
+	
+	Public function CanviEmail(){
+		$this->load->library('form_validation');
+
+		$passemail = $this->input->post('canvipasswordmail');
+		$email = $this->input->post('canviemail');
+		$pw=$this->user->compassword($this->sesio['id']);
+		
+		if(MD5($passemail) == $pw->password) {
+		//var_dump(MD5($pass));
+		//var_dump($pw['password']);
+		
+		$this->form_validation->set_rules('canvipasswordmail', 'Nova paraula de pas', 'trim|required|min_length[4]|max_length[32]');
+		$this->form_validation->set_rules('canvimail', 'Confirma el teu email', 'trim|required|');
+		
+		
+		if($this->form_validation->run() == TRUE) {
+		
+		$this->user->modificarEmail($this->sesio['id'], $email);
+		redirect ('login', 'refresh');
+		}
+		
+		else{
+			redirect('welcome/index', 'refresh');
+		}
+		}
+		else{
+			redirect('welcome/taula', 'refresh');
+		}
+	}
 		
 		//var_dump($this->user->compassword($this->sesio['id']));
 		

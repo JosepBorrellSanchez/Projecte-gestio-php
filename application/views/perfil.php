@@ -46,8 +46,8 @@ function canviarFoto() {
                     
                     <div id="canvimail" style="display:none">
 					<? echo form_open_multipart('usuari/CanviEmail');?>
-                    <center><input name="canvimailpassword" type="password" name="password" class="password" placeholder="Paraula de pas"></center>
-                    <center><input name="canviarmail" type="password" name="email" class="text" placeholder="Nou email"></center>
+                    <center><input name="canvipasswordmail" type="password" class="password" placeholder="Paraula de pas"></center>
+                    <center><input name="canviarmail" type="text" class="text" placeholder="Nou email"></center>
                     
                     <center><p><button type="submit" class="btn btn-success" name="foto">Guardar els canvis</button></p></center>
                     </form>

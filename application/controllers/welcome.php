@@ -434,7 +434,7 @@ function carregarCites($id_agenda)  {
        // redefine ('PDF_HEADER_LOGO', './application/fotos/josep.jpg');
         $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
-        $pdf->SetAuthor('Borrells');
+        $pdf->SetAuthor('Infoworld');
         $pdf->SetTitle('Fitxa de client');
         $pdf->SetSubject('Fitxa');
         $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
@@ -549,7 +549,8 @@ function carregarCites($id_agenda)  {
         $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
  
 // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config_alt.php de libraries/config
-        $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE , PDF_HEADER_STRING, array(0, 64, 255), array(0, 64, 128));
+        $pdf->SetHeaderData($this->id['foto'], PDF_HEADER_LOGO_WIDTH, $this->id['username'] , PDF_HEADER_STRING, array(0, 0, 0), array(0, 0, 0));
+       //$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE , PDF_HEADER_STRING, array(0, 64, 255), array(0, 64, 128));
         $pdf->setFooterData($tc = array(0, 64, 0), $lc = array(0, 64, 128));
  
 // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config.php de libraries/config
@@ -612,7 +613,7 @@ function carregarCites($id_agenda)  {
 // ---------------------------------------------------------
 // Cerrar el documento PDF y preparamos la salida
 // Este método tiene varias opciones, consulte la documentación para más información.
-        $nombre_archivo = utf8_decode("Fitxe del client ".$client.".pdf");
+        $nombre_archivo = utf8_decode("Cita del client ".$client.".pdf");
         $pdf->Output($nombre_archivo, 'I');}
         else
    {

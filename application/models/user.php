@@ -71,6 +71,16 @@ function modificarPassword($id, $password){
  	$this->db->update('users', $data);
 }
 
+function modificarEmail($id, $email){
+	$data=array(
+	'Email'=> $email);
+	
+ 	$this->db->where('id', $id);
+ 	$this->db->update('users', $data);
+}
+
+
+
 function pujarFoto($file_name, $id) {
 		//agafo els valors de la foto que s’ha pujat, i inserto a la base de dades. 
 		 $data = array('foto'=> $file_name);

@@ -2196,7 +2196,7 @@ TableTools.BUTTONS = {
 				plural = (len==1) ? "" : "s";
 			this.fnInfo( '<h6>Taula copiada</h6>'+
 				'<p>al porta-retalls. Copiada/es '+len+' fila/es'+plural+' </p>',
-				2500
+				21500
 			);
 		}
 	} ),
