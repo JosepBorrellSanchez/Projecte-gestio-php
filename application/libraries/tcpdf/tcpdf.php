@@ -3414,13 +3414,16 @@ class TCPDF {
 				} elseif ($imgtype == 'svg') {
 					$this->ImageSVG(K_PATH_IMAGES.$headerdata['logo'], '', '', $headerdata['logo_width']);
 				} else {
-					$this->Image(K_PATH_IMAGES.$headerdata['logo'], '', '', $headerdata['logo_width']);
+					$this->Image(K_PATH_IMAGES.$headerdata['logo'], '', '', 45, 50, '', '', '', true);
 				}
 				$imgy = $this->getImageRBY();
 			} else {
 				$imgy = $this->y;
 			}
 			$cell_height = $this->getCellHeight($headerfont[2] / $this->k);
+			
+			
+	
 			// set starting margin for text data cell
 			if ($this->getRTL()) {
 				$header_x = $this->original_rMargin + ($headerdata['logo_width'] * 1.1);

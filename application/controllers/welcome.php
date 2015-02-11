@@ -440,8 +440,11 @@ function carregarCites($id_agenda)  {
         $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
  
 // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config_alt.php de libraries/config
-        $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE , PDF_HEADER_STRING, array(0, 64, 255), array(0, 64, 128));
-        $pdf->setFooterData($tc = array(0, 64, 0), $lc = array(0, 64, 128));
+        $pdf->SetHeaderData($this->id['foto'], PDF_HEADER_LOGO_WIDTH, $this->id['username'] , PDF_HEADER_STRING, array(0, 0, 0), array(0, 0, 0));
+        //var_dump(PDF_HEADER_LOGO);
+        //$this->id['foto'];
+        
+        $pdf->setFooterData($tc = array(0, 0, 0), $lc = array(0, 0, 0));
  
 // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config.php de libraries/config
         $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -502,19 +505,19 @@ function carregarCites($id_agenda)  {
         $html .= "th{color: #fff; font-weight: bold; background-color: #222}";
         $html .= "td{background-color: #AAC7E3; color: #fff}";
         $html .= "</style>";
-        $html .= "<h2>Codi: ".$codi."</h2>";
-        $html .= "<h2>NIF: ".$nif."</h2>";
-        $html .= "<h2>Compte Contable: ".$comptecontable."</h2>";
-        $html .= "<h2>Nom Fiscal: ".$nomfiscal."</h2>";
-        $html .= "<h2>Nom Comercial: ".$nomcomercial."</h2>";
-        $html .= "<h2>Població: ".$poblacio."</h2>";
-        $html .= "<h2>Direcció: ".$direccio."</h2>";
-        $html .= "<h2>Contacte: ".$contacte."</h2>";
-        $html .= "<h2>Email: ".$email."</h2>";
-        $html .= "<h2>Telefon Fixe: ".$telfixe."</h2>";
-        $html .= "<h2>Telefon mòbil: ".$telmobil."</h2>";
-        $html .= "<h2>Fax: ".$fax."</h2>";
-         $html .= "<h2>Observacions: ".$observacions."</h2>";
+        $html .= "<h3>Codi: ".$codi."</h3>";
+        $html .= "<h3>NIF: ".$nif."</h3>";
+        $html .= "<h3>Compte Contable: ".$comptecontable."</h3>";
+        $html .= "<h3>Nom Fiscal: ".$nomfiscal."</h3>";
+        $html .= "<h3>Nom Comercial: ".$nomcomercial."</h3>";
+        $html .= "<h3>Població: ".$poblacio."</h3>";
+        $html .= "<h3>Direcció: ".$direccio."</h3>";
+        $html .= "<h3>Contacte: ".$contacte."</h3>";
+        $html .= "<h3>Email: ".$email."</h3>";
+        $html .= "<h3>Telefon Fixe: ".$telfixe."</h3>";
+        $html .= "<h3>Telefon mòbil: ".$telmobil."</h3>";
+        $html .= "<h3>Fax: ".$fax."</h3>";
+        $html .= "<h3>Observacions: ".$observacions."</h3>";
  
 // Imprimimos el texto con writeHTMLCell()
         $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
