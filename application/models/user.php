@@ -94,6 +94,11 @@ function getDades($id) {
 	$query= $this->db->get('users');
 	return $query->result_array();
 	
-}	
+}
+
+	
+	
+
+	
 		   
 }
