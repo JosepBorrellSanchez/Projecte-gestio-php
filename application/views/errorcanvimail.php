@@ -39,6 +39,7 @@ function canviarFoto() {
               
             <div class="row">
                 <div class="col-md-12">
+					<h1>L'email que jas posat ja esta en ús, intenta-ho amb un altre</h1>
                     <!-- Advanced Tables -->
                     <center>  <h3>  El teu nom d'usuari : <?echo $sesio['username'];?></h3></center>
                     <center>  <h3>  El teu nom complert: <?echo $sesio['Nomicognoms'];?></h3></center>

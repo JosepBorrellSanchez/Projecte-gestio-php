@@ -192,7 +192,7 @@ if($this->form_validation->run() == TRUE)
 		$fax = $this->input->post('Fax');
 		$observacions = $this->input->post('Observacions');
 		$this->model_clients->insertaClient($nif, $id2, $comptecontable, $nomfiscal, $nomcomercial, $poblacio, $cp, $provincia, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions);
-		redirect('welcome/index');}
+		redirect('welcome/taula');}
 		else
    {
 	    $this->afegir();

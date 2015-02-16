@@ -39,6 +39,7 @@ function canviarFoto() {
               
             <div class="row">
                 <div class="col-md-12">
+					<h1>Paraula de pas incorrecta, torna-ho a provar</h1>
                     <!-- Advanced Tables -->
                     <center>  <h3>  El teu nom d'usuari : <?echo $sesio['username'];?></h3></center>
                     <center>  <h3>  El teu nom complert: <?echo $sesio['Nomicognoms'];?></h3></center>

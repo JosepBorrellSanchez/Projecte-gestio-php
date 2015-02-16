@@ -110,15 +110,17 @@ parent::__construct();
   {
 		
 		$this->user->modificarPassword($this->sesio['id'], MD5($passnova));
-		redirect ('login', 'refresh');
+		$this->session->sess_destroy();
+		
+		redirect ('usuari', 'refresh');
 		}
 		
 		else{
-			redirect('welcome/index', 'refresh');
+			$this->load->view('perfil');
 		}
 		}
 		else{
-			redirect('welcome/taula', 'refresh');
+			$this->load->view('errorpassword');
 		}
 	}
 	
@@ -126,7 +128,7 @@ parent::__construct();
 		
 
 		$passemail = $this->input->post('canvipasswordmail');
-		$email = $this->input->post('canviemail');
+		$email = $this->input->post('canviarmail');
 		$pw=$this->user->compassword($this->sesio['id']);
 		
 		if(MD5($passemail) == $pw->password) {
@@ -134,21 +136,40 @@ parent::__construct();
 		//var_dump($pw['password']);
 		
 		$this->form_validation->set_rules('canvipasswordmail', 'Nova paraula de pas', 'trim|required|min_length[4]|max_length[32]');
-		$this->form_validation->set_rules('canvimail', 'Confirma el teu email', 'trim|required|');
+		$this->form_validation->set_rules('canviarmail', 'Confirma el teu email', 'trim|required|valid_email');
 		
 		
 		if($this->form_validation->run() == TRUE) {
-		
+		if($this->user->compemail($email) == TRUE) {
 		$this->user->modificarEmail($this->sesio['id'], $email);
-		redirect ('login', 'refresh');
+		
+		$id = $this->sesio['id'];
+			$username = $this->sesio['username'];
+			$Nomicognoms = $this->sesio['Nomicognoms'];
+            $foto = $this->sesio['foto'];
+            
+			$actualitzarsesio = array(
+			'id' => $id,
+			'username' => $username,
+			'Nomicognoms' => $Nomicognoms,
+            'email' => $email,
+			'foto' => $foto);
+			$this->session->set_userdata('logged_in',$actualitzarsesio);
+			
+			
+		redirect ('usuari', 'refresh');}
+		else{
+			$this->load->view('errorcanvimail');
+		}
 		}
 		
 		else{
-			redirect('welcome/index', 'refresh');
+			$this->load->view('perfil');
 		}
 		}
 		else{
-			redirect('welcome/taula', 'refresh');
+			$this->load->view('errorpassword');
+			//redirect('welcome/taula', 'refresh');
 		}
 	}
 	
@@ -199,7 +220,7 @@ parent::__construct();
 		$this->email->from('cantreply@youdomain.com', 'Your name');
 		$this->email->to($user->email); 	
 		$this->email->subject('Password reset');
-		$this->email->message('You have requested the new password, Here is you new password:'. $password);	
+		$this->email->message('Has oblidat la teva paraula de pas, aquí tens la nova:'. $password. 'recorda que pots canviar-la al teu perfil, i que la paraula de pas es personal');	
 		$this->email->send();
 	} 
 		

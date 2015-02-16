@@ -84,7 +84,7 @@
             </div>
              <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="CP" id="CP" value=""/>
+                    <input class="form-control" name="CP" id="CP" value="" readonly>
                 </div>
             </div>
             <div class="col-md-3">
