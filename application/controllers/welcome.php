@@ -401,11 +401,11 @@ function carregarCites($id_agenda)  {
 		$telmobil = $this->input->post('TelMobil');
 		$fax = $this->input->post('Fax');
 		$observacions = $this->input->post('Observacions');
-		$id = $this->id2;
+	
 		if ($poblacio == null){
-			$this->model_clients->modificarClients($codi, $nif, $comptecontable, $nomfiscal, $nomcomercial, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions, $id2);}
+			$this->model_clients->modificarClients($codi, $nif, $comptecontable, $nomfiscal, $nomcomercial, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions);}
 		else{
-		$this->model_clients->modificarClientsTot($codi, $nif, $comptecontable, $nomfiscal, $nomcomercial, $provincia, $poblacio, $codipostal, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions, $id2);
+		$this->model_clients->modificarClientsTot($codi, $nif, $comptecontable, $nomfiscal, $nomcomercial, $provincia, $poblacio, $codipostal, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions);
 			//$this->load->model('model_clients');
 			}
 		

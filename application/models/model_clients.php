@@ -5,6 +5,8 @@ function __construct()
 parent::__construct();
 $this->load->database();
 $this->load->library('session');
+$this->sesio = $this->session->userdata('logged_in');
+$this->id = $this->sesio['id'];
 }
 
 
@@ -91,7 +93,7 @@ $this->load->library('session');
 		}
 		// Tots els update
 
-		function modificarClients($codi,$nif,$comptecontable,$nomfiscal,$nomcomercial,$direccio,$contacte,$email,$telfixe,$telmobil,$fax, $id2){
+		function modificarClients($codi,$nif,$comptecontable,$nomfiscal,$nomcomercial,$direccio,$contacte,$email,$telfixe,$telmobil,$fax){
 			$data = array(
 			'Codi'=> $codi,
 			'NIF'=> $nif,
@@ -105,11 +107,11 @@ $this->load->library('session');
 			'Telmobil'=> $telmobil,
 			'Fax'=> $fax);
 			$this->db->where('Codi',$codi);
-			$this->db->where('id_usuari',$id2);
+			$this->db->where('id_usuari',$this->id);
 			$this->db->update('Clients', $data);
 		}
 		
-		function modificarClientsTot($codi,$nif,$comptecontable,$nomfiscal,$nomcomercial,$provincia,$poblacio,$codipostal,$direccio,$contacte,$email,$telfixe,$telmobil,$fax, $id2){
+		function modificarClientsTot($codi,$nif,$comptecontable,$nomfiscal,$nomcomercial,$provincia,$poblacio,$codipostal,$direccio,$contacte,$email,$telfixe,$telmobil,$fax){
 			$data = array(
 			'Codi'=> $codi,
 			'NIF'=> $nif,
@@ -126,7 +128,7 @@ $this->load->library('session');
 			'Telmobil'=> $telmobil,
 			'Fax'=> $fax);
 			$this->db->where('Codi',$codi);
-			$this->db->where('id_usuari',$id2);
+			$this->db->where('id_usuari',$this->id);
 			$this->db->update('Clients', $data);
 		}
 		
