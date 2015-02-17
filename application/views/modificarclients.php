@@ -106,7 +106,7 @@
             
              <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="codipostal" id ="codipostal" placeholder="Codi Postal" value=<?php echo $clients->CodiPostal;?>>
+                    <input class="form-control" name="codipostal" id ="codipostal" placeholder="Codi Postal" value='<?php echo $clients->CodiPostal;?>'readonly>
                 </div>
             </div>
             <div class="col-md-3">

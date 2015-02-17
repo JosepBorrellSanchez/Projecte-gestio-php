@@ -10,8 +10,8 @@
 <script type="text/javascript">
 $(document).ready( function () {
 var oTable = $('#1').dataTable( {
-"sScrollY": "300px",
-"sScrollX": "100%",
+"sScrollY": "50%",
+"sScrollX": "70%",
 "sScrollXInner": "100%",
 "bScrollCollapse": true,
 "bPaginate": true,
