@@ -168,15 +168,14 @@ if($this->session->userdata('logged_in'))
   $this->form_validation->set_rules('NIF', 'NIF', 'required|');
   $this->form_validation->set_rules('NomComercial', 'NomComercial', 'required|');
   $this->form_validation->set_rules('provincias', 'Provincia', 'required|');
-  $this->form_validation->set_rules('cityDrp', 'Ciutat', 'required|');
-  //$this->form_validation->set_rules('Telfixe', 'Telfixe', 'required|decimal');
+  $this->form_validation->set_rules('cityDrp', 'Provincia i Ciutat', 'required|');
+  $this->form_validation->set_rules('TelFixe', 'Telèfon Fixe', 'required|integer');
   $this->form_validation->set_rules('Email', 'Email', 'trim|valid_email');
 
 if($this->form_validation->run() == TRUE)
   {
 	    $id = $this->session->userdata('logged_in');
 	    $id2 = $id['id'];
-		var_dump ($id2);
 		$nif = $this->input->post('NIF');
 		$comptecontable = $this->input->post('CompteContable');
 		$nomfiscal = $this->input->post('NomFiscal');
@@ -191,8 +190,10 @@ if($this->form_validation->run() == TRUE)
 		$telmobil = $this->input->post('TelMobil');
 		$fax = $this->input->post('Fax');
 		$observacions = $this->input->post('Observacions');
+		//var_dump($comptecontable);
 		$this->model_clients->insertaClient($nif, $id2, $comptecontable, $nomfiscal, $nomcomercial, $poblacio, $cp, $provincia, $direccio, $contacte, $email, $telfixe, $telmobil, $fax,$observacions);
 		redirect('welcome/taula');}
+	
 		else
    {
 	    $this->afegir();

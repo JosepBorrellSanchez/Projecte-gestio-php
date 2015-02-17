@@ -187,14 +187,14 @@ parent::__construct();
 		$q = $this->db->query("select * from users where Email='" . $email . "'");
 		if($this->form_validation->run() == TRUE) {
         if ($q->num_rows > 0) {
-            $r = $q->result();
+            $r = $q->result_array();
             $user=$r[0];
 			$this->resetpassword($user);
-			$info= "Password has been reset and has been sent to email id: ". $email;
-			redirect('/usuari/forget?info=' . $info, 'refresh');
+			//var_dump($user);
+			$this->passwordenviada($user);
         }
-		$error= "The email id you entered not found on our database ";
-		redirect('/usuari/forget?error=' . $error, 'refresh');
+        else{
+		redirect('/usuari/forget?error=' . $error, 'refresh');}
 		//http://classpattern.com/reset-password-codeigniter.html
 		
 	} 
@@ -208,19 +208,55 @@ parent::__construct();
 	$this->load->view('login-forget',$data);
 }
 
+public function passwordenviada ($user) {
+	
+	$this->load->view('passwordenviada', $user);
+}
+
 
 	private function resetpassword($user)
 	{
+		 //cargamos la libreria email de ci
+        $this->load->library("email");
+ 
+        //configuracion para gmail
+        $configGmail = array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'vforvendettawin@gmail.com',
+            'smtp_pass' => 'RevengeF2w',
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n"
+        );    
+        
 		date_default_timezone_set('GMT');
+		$this->email->initialize($configGmail);
 		$this->load->helper('string');
 		$password= random_string('alnum', 16);
-		$this->db->where('id', $user->id);
+		$this->db->where('id', $user['id']);
 		$this->db->update('users',array('password'=>MD5($password)));
 		$this->load->library('email');
-		$this->email->from('cantreply@youdomain.com', 'Your name');
-		$this->email->to($user->email); 	
-		$this->email->subject('Password reset');
-		$this->email->message('Has oblidat la teva paraula de pas, aquí tens la nova:'. $password. 'recorda que pots canviar-la al teu perfil, i que la paraula de pas es personal');	
+		$this->email->from('noreply@infoworld.com', 'Infoworld.S.L');
+		$this->email->to($user['Email']); 	
+		$this->email->subject('Paraula de pas');
+		$this->email->message('<p><strong>Hola '.$user['Nomicognoms'] .'</strong></p>
+
+<p>Pareix que has oblidat la teva contrasenya, aqu&iacute; t&#39;adjuntem la nova, generada pel sistema.</p>
+
+<p>Paraula de pas : <em><strong>'.$password.' </strong></em></p>
+
+<p>&nbsp;</p>
+
+<p>Recorda que pots canviar-la en qualsevol moment al teu perfil d&#39;usuari.</p>
+
+<p>Moltes gr&agrave;cies per utilitzar els nostres serveis.</p>
+
+<p>Cordialment,</p>
+
+<p>Infoworld</p>
+');
 		$this->email->send();
 	} 
 		

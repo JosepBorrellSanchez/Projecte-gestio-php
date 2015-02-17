@@ -45,7 +45,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="NIF"  placeholder=" N.I.F"/>
+                    <input class="form-control" name="NIF"  placeholder=" N.I.F *"/>
                 </div>
             </div>
             <div class="col-md-3">
@@ -62,7 +62,7 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="NomComercial" placeholder="Nom Comercial"/>
+                    <input class="form-control" name="NomComercial" placeholder="Nom Comercial *"/>
                 </div>
             </div>
         </div>
@@ -101,14 +101,14 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="Email" placeholder="E-mail"/>
+                    <input class="form-control" name="Email" placeholder="E-mail *"/>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <input class="form-control" name="TelFixe" placeholder="Telèfon Fixe"/>
+                    <input class="form-control" name="TelFixe" placeholder="Telèfon Fixe *"/>
                 </div>
             </div>
             <div class="col-md-3">
