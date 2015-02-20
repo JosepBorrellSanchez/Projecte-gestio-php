@@ -19,11 +19,16 @@
             <h1>Registre</h1>
             <?php echo validation_errors(); ?>
 			<?php echo form_open('registre/registration');  ?>
+			<span class="loginerror"> <?php if ($this->session->flashdata('error') !== FALSE) { echo $this->session->flashdata('error'); } ?></span>
                 <input type="text" name="username" class="username" placeholder="Nom d'usuari">
                 <input type="password" name="password" class="password" placeholder="Paraula de pas">
                 <input type="password" name="con_password" class="con_password" placeholder="Confirma la paraula de pas">
                 <input type="text" name="nomicognoms" class="nomicognoms" placeholder="Nom i cognoms">
                 <input type="text" name="email" class="email" placeholder="Email">
+                <br>
+                <br>
+                <br>
+                <?php echo $recaptcha_html; ?> 
                 <button type="submit">Registrar-se</button>
                 Ja tens un compte? entra <a href="<?php echo base_url('index.php/login')?>";>aquí</a>
                 <div class="error"><span>+</span></div>

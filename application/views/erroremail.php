@@ -31,6 +31,7 @@ function setFocusToTextBox(){
                 <input type="password" name="con_password" class="con_password" placeholder="Confirma la paraula de pas">
                 <input type="text" name="nomicognoms" class="nomicognoms" placeholder="Nom i cognoms" value='<?php echo $Nomicognoms;?>'>
                 <input type="text" name="email" class="email" placeholder="Email" value='<?php echo $Email;?>'> Ho sento l'email ja està en ús.
+                <?php echo $recaptcha_html; ?> 
                 <button type="submit">Registrar-se</button>
                 Ja tens un compte? entra <a href="<?php echo base_url('index.php/login')?>";>aquí</a>
                 <div class="error"><span>+</span></div>

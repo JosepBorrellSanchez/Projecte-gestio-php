@@ -6,13 +6,17 @@ class registre extends CI_Controller {
  {
    parent::__construct();
    $this->load->model('user');
+   $this->load->library('recaptcha');
  }
 
  function index()
- //Carrega la vista del login.
+ //Carrega la vista del registre.
  {
    $this->load->helper(array('form'));
-   $this->load->view('registre');
+   $data['recaptcha_html'] = $this->recaptcha->recaptcha_get_html();
+                    $data['page'] = 'registre';
+					$this->load->view('registre',$data);
+					//var_dump($this->recaptcha);
  }
  public function registration()
  {
@@ -37,9 +41,11 @@ $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email')
   );
   if($this->form_validation->run() == TRUE)
   {
-  
+	  $this->recaptcha->recaptcha_check_answer();
 	  if($this->user->compusuari($username) == TRUE){
 		  if($this->user->compemail($email) == TRUE){
+			if($this->recaptcha->getIsValid()){
+			  
 	  
 	  //$username = $this->input->post('username');
    $this->user->registre($data);
@@ -47,6 +53,18 @@ $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email')
    //$this->load->view('gracies', $data);
    $this->gracies($data);
    //redirect('welcome/index', 'refresh');}
+	}
+	else{
+		                        if(!$this->recaptcha->getIsValid()) {
+                            $this->session->set_flashdata('error','Error, captcha incorrecte');
+                            redirect('registre', 'refresh');
+                        } else {
+                            $this->session->set_flashdata('error','incorrect credentials');
+                            redirect('welcome/index', 'refresh');
+                        }
+                        
+                        
+					}
   }
   else{
 	  $this->erroremail($data);
