@@ -11,7 +11,7 @@
 $(document).ready( function () {
 var oTable = $('#1').dataTable( {
 "sScrollY": "50%",
-"sScrollX": "70%",
+"sScrollX": "100%",
 "sScrollXInner": "100%",
 "bScrollCollapse": true,
 "bPaginate": true,
