@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 29-01-2015 a las 21:47:31
+-- Tiempo de generación: 22-02-2015 a las 18:16:42
 -- Versión del servidor: 5.5.40
 -- Versión de PHP: 5.3.10-1ubuntu3.15
 
@@ -30,22 +30,11 @@ CREATE TABLE IF NOT EXISTS `Agenda` (
   `id_agenda` int(11) NOT NULL AUTO_INCREMENT,
   `Num_Client` int(11) NOT NULL,
   `Client` varchar(30) NOT NULL,
-  `DiaHora` varchar(30) NOT NULL,
+  `DiaHora` text NOT NULL,
   `Asumpte` varchar(50) NOT NULL,
   `Nota` varchar(100) NOT NULL,
-  `Nom` varchar(200) DEFAULT NULL,
-  `Documents` varchar(600) DEFAULT NULL,
   PRIMARY KEY (`id_agenda`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Volcado de datos para la tabla `Agenda`
---
-
-INSERT INTO `Agenda` (`id_agenda`, `Num_Client`, `Client`, `DiaHora`, `Asumpte`, `Nota`, `Nom`, `Documents`) VALUES
-(3, 2, '2', '16:45 21/01/2015', 'asdasdasdas', 'asdasdasdasdasd test', NULL, NULL),
-(4, 11, '11', '16:19 21/01/2015', 'PIAS', 'Vol mirar com esta', NULL, NULL),
-(5, 13, '13', '17:30 24/01/2015', 'Sexe', 'asdasd', NULL, NULL);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -55,8 +44,9 @@ INSERT INTO `Agenda` (`id_agenda`, `Num_Client`, `Client`, `DiaHora`, `Asumpte`,
 
 CREATE TABLE IF NOT EXISTS `Clients` (
   `Codi` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuari` int(11) NOT NULL,
   `NIF` varchar(100) DEFAULT NULL,
-  `Comptecontable` int(11) DEFAULT NULL,
+  `Comptecontable` varchar(11) DEFAULT NULL,
   `Nomfiscal` varchar(100) DEFAULT NULL,
   `Nomcomercial` varchar(50) DEFAULT NULL,
   `CodiPostal` int(11) DEFAULT '43870',
@@ -66,21 +56,11 @@ CREATE TABLE IF NOT EXISTS `Clients` (
   `Contacte` varchar(30) DEFAULT NULL,
   `Email` varchar(30) DEFAULT NULL,
   `Telfixe` int(11) DEFAULT NULL,
-  `Telmobil` int(11) DEFAULT NULL,
+  `Telmobil` varchar(11) DEFAULT NULL,
   `Fax` int(11) DEFAULT NULL,
   `Observacions` longtext,
   PRIMARY KEY (`Codi`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
-
---
--- Volcado de datos para la tabla `Clients`
---
-
-INSERT INTO `Clients` (`Codi`, `NIF`, `Comptecontable`, `Nomfiscal`, `Nomcomercial`, `CodiPostal`, `Provincia`, `Poblacio`, `Direccio`, `Contacte`, `Email`, `Telfixe`, `Telmobil`, `Fax`, `Observacions`) VALUES
-(10, '47937122Q', 3234, 'Josep Borrell Sánchez', 'Josepet Borrell', 43870, '6411', '20', 'Av. Generalitat 125 2º 2ª', 'Sr.Josep', 'josepborrell93@hotmail.com', 977510945, 677313906, 977485569, 'Hola q tal'),
-(11, '47937122Q', 3234, 'Josep Borrell Sánchez', 'Josepet Borrell', 37554, '1', '', 'Av. Generalitat 125 2º 2ª', 'Esteban', 'josepborrell93@hotmail.com', 977510945, 646554412, 977474123, 'pos hola'),
-(12, '47937122Q', 454626164, 'sad', 'Josepet Borrell', 0, 'Av. Generalitat 125 2º 2ª', 'Sr.Josep', '977510945', '677404102', '123', 0, NULL, NULL, 'Hola bon dia'),
-(13, '47937122Q', 454626164, 'Josep Borrell Sánchez', 'Josepet Borrell', 40292, '8', '5901', 'Av. Generalitat 125 2º 2ª', 'Sr.Josep', 'josepborrell93@hotmail.com', 977510945, 677313906, 123, 'Que tal?');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 -- --------------------------------------------------------
 
@@ -8288,17 +8268,12 @@ INSERT INTO `provincias` (`idprovincia`, `provincia`, `provinciaseo`, `provincia
 CREATE TABLE IF NOT EXISTS `users` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `username` varchar(10) NOT NULL,
+  `Nomicognoms` varchar(35) NOT NULL,
   `password` varchar(100) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `foto` varchar(500) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Volcado de datos para la tabla `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(1, 'bob', '9a618248b64db62d15b300a07b00580b'),
-(3, 'josep', '81dc9bdb52d04dc20036dbd8313ed055');
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
