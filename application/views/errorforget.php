@@ -13,32 +13,23 @@
         <link rel="stylesheet" href="<?php echo base_url();?>assets/css/supersized.css">
         <link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
  </head>
- 
- 
+ <body>
    <div class="page-container">
-            <h1>Recuperar password</h1>
-            <br>
             <?php echo validation_errors(); ?>
-			<form class="form-horizontal well" method="post" id="form" action="./doforget">
-			<fieldset>			
-				<div class="control-group">
-					<label for="email"> Introdueix el teu Email</label>
-					<input class="box" type="text" id="email" name="email" />
-				</div>
-				<div class="form-actions">
-					<button type="submit">Envia</button>
-				</div>
-				
-			</fieldset>
-		</form>
-            
-        </div> 
-         <!-- Javascript -->
+            <h1>Hola.</h1>
+            <br>
+            <br>
+            <br>
+			<h1> El seu email no està registrat a la nostra base de dades, segur que l'ha escrit correctament? </h1> 
+			<br>
+			<br>
+			<br>
+			<h1> Torna enrere <a href="<?php echo base_url('index.php/usuari/forget')?>";>aquí</a></h1>
+
+        <!-- Javascript -->
         <script src="<?php echo base_url();?>assets/js/jquery-1.8.2.min.js"></script>
         <script src="<?php echo base_url();?>assets/js/supersized.3.2.7.min.js"></script>
         <script src="<?php echo base_url();?>assets/js/supersized-init.js"></script>
-        <script src="<?php echo base_url();?>assets/js/scriptsusuari.js"></script>
+        <script src="<?php echo base_url();?>assets/js/scripts.js"></script>
  </body>
-</html>	
-	
-	
+</html>

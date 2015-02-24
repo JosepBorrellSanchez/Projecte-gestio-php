@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `Clients` (
   `Email` varchar(30) DEFAULT NULL,
   `Telfixe` int(11) DEFAULT NULL,
   `Telmobil` varchar(11) DEFAULT NULL,
-  `Fax` varchar(11) DEFAULT NULL,
+  `Fax` int(11) DEFAULT NULL,
   `Observacions` longtext,
   PRIMARY KEY (`Codi`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;

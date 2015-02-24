@@ -45,7 +45,7 @@ parent::__construct();
  public function DoUpload() {
 		//es el que s’encarrega de fer la feina de pujar la foto, si s’ha pujat correctament reenvia a la llista.
 		if($this->session->userdata('logged_in')){
-		$config_file = array ( 'upload_path' => './application/fotos',
+		$config_file = array ( 'upload_path' => './assets/fotosusuaris',
 			'allowed_types' => 'png|jpg',
 			'overwrite' => true,
 			'max_size' => 0,
@@ -63,7 +63,7 @@ parent::__construct();
 			$this->session->set_flashdata('success_upload','Pujat Correcament');
 			//$nom = $this->upload->file_name;
 			$propietats=$this->upload->data();
-			$file_name = base_url()."application/fotos/".$this->sesio['username'].$propietats['file_ext'];
+			$file_name = base_url()."assets/fotosusuaris/".$this->sesio['username'].$propietats['file_ext'];
 			//$file_name = base_url()."imatges/".$this->upload->file_name;
 			$id = $this->sesio['id'];
 			//$idproducte = $this->mod_productes->getUltimProducte();
@@ -178,6 +178,12 @@ parent::__construct();
 		
 		$this->load->view('login-forget');
 	}
+
+	public function forgeterror()
+	{
+		
+		$this->load->view('errorforget');
+	}
 	
 	public function doforget()
 	{
@@ -194,7 +200,7 @@ parent::__construct();
 			$this->passwordenviada($user);
         }
         else{
-		redirect('/usuari/forget?error=' . $error, 'refresh');}
+		redirect('/usuari/forgeterror', 'refresh');}
 		//http://classpattern.com/reset-password-codeigniter.html
 		
 	} 
@@ -203,11 +209,6 @@ parent::__construct();
 		}
 	}
 	
-	public function errorforget ($data) {
-	
-	$this->load->view('login-forget',$data);
-}
-
 public function passwordenviada ($user) {
 	
 	$this->load->view('passwordenviada', $user);

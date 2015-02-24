@@ -48,7 +48,14 @@ font-size: 16px;">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 				<li class="text-center">
-                     <img src="<?echo $sesio['foto']?>" class="user-image img-responsive"/>
+					<?if ($sesio['foto'] != NULL) {?>
+                     <img src="<?  echo $sesio['foto'] ?>" class="user-image img-responsive"/>
+                     <?} else {  ?>
+                     <p>
+					 <p>
+                     <p>
+                     <p>
+                     <? }?>
 					</li>	
 					
 					<? $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>
