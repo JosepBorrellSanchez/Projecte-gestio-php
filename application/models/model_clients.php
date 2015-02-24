@@ -41,7 +41,7 @@ $this->id = $this->sesio['id'];
 		}
 
 		function getclientcodi($codi, $id2) {
-			$this->db->select('A.Codi,A.NIF,A.Comptecontable,A.Nomfiscal,A.Nomcomercial,B.poblacion,C.Provincia, A.CodiPostal ,A.Direccio, A.Contacte, A.Email, A.Telfixe, A.Telmobil, A.Fax, A.Observacions');
+			$this->db->select('A.Codi,A.NIF,A.Comptecontable,A.Nomfiscal,A.Nomcomercial,B.poblacion,C.Provincia, A.Provincia as provinciausuari, A.poblacio as poblaciousuari, A.CodiPostal ,A.Direccio, A.Contacte, A.Email, A.Telfixe, A.Telmobil, A.Fax, A.Observacions');
 			$this->db->from('Clients as A');
 			$this->db->where('A.Codi',$codi);
 			$this->db->where('id_usuari', $id2);

@@ -19,12 +19,10 @@
                     type: "POST",
                     success: function(data){
                         $("#cityDrp").html(data);
+                        $('#cityDrp option[value="' + $('#poblacio_nom').val()+ '"]').attr('selected', 'selected');
                     }
                     });
                 });
-            });
-            
-            $(document).ready(function() { 
                 $("#cityDrp").change(function(){
                     $.ajax({
                     url:"<?php echo base_url();?>index.php/welcome/carregarCP",    
@@ -35,7 +33,10 @@
                     }
                     });
                 });
+                $('#provincias option[value="' +$('#provincia_nom').val() + '"]').attr('selected', 'selected');
+                $('#provincias').triggerHandler('change');
             });
+            
         </script>
  
 </head>
@@ -72,20 +73,7 @@
                     <input class="form-control" name="NomComercial" placeholder="Nom Comercial" value='<?php echo $clients->Nomcomercial;?>'>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <input class="form-control" name="Poblacio" placeholder="Població" value='<?php echo "Ciutat actual:  ".$clients->poblacion;?>' readonly>
-                </div>
-            </div>
-            
-            <div class="col-md-3">
-                <div class="form-group">
-                     <input class="form-control" name="provincia" placeholder="Provincia" value='<?php echo "Provincia actual:  ".$clients->Provincia;?>' readonly> 
-                </div>
-            </div>
-        </div>    
+        </div>   
         <div class="row">    
             <div class="col-md-2">
                 <div class="form-group">
@@ -93,6 +81,8 @@
                     //desplegable provincias
                     echo form_dropdown('provincias', $provincias, 'Escoge una provincia', 'id="provincias"');
                     //campo de texto postal?>
+                    <input id="poblacio_nom" type="hidden" value=<?php echo $clients->poblaciousuari?>></input>
+                    <input id="provincia_nom" type="hidden" value=<?php echo $clients->provinciausuari?>></input>
                 </div>
             </div>
             <div class="col-md-3">
