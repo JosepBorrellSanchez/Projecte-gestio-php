@@ -22,10 +22,10 @@ Class User extends CI_Model
 }
     
  
- function registre($data)
+ function registre($dades)
  {
 	
-  $this->db->insert('users',$data);
+  $this->db->insert('users', $dades);
 
  }
  
@@ -41,6 +41,7 @@ return false;
 else{
 return true;}
 }
+
 function compemail($email){
  	$this->db->where('Email', $email);
 	$query = $this->db->get('users');

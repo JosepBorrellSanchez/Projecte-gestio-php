@@ -49,9 +49,14 @@ $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email')
 		  if($this->user->compemail($email) == TRUE){
 			if($this->recaptcha->getIsValid()){
 			  
-	  
+	  $dades=array(
+	  'username'=>$data['username'],
+	  'Nomicognoms'=>$data['Nomicognoms'],
+	  'password'=>$data['password'],
+	  'Email'=>$data['Email']);
 	  //$username = $this->input->post('username');
-   $this->user->registre($data);
+	  
+   $this->user->registre($dades);
    //redirect a "gracies per registrar-te, qui sigues... this load view i li paso la variable Username
    //$this->load->view('gracies', $data);
    $this->gracies($data);
