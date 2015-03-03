@@ -33,12 +33,12 @@ $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email')
  
 	  $username = $this->input->post('username');
 	  $email = $this->input->post('email');
-	  $data['recaptcha_html'] = $this->recaptcha->recaptcha_get_html();
-      $data['page'] = 'registre';
-	  $data['username']=$this->input->post('username');
-	  $data['Nomicognoms']=$this->input->post('nomicognoms');
-	  $data['password']=md5($this->input->post('password'));
-	  $data['Email']=$this->input->post('email');
+	  $data=array(
+		'username'=>$this->input->post('username'),
+		'Nomicognoms'=>$this->input->post('nomicognoms'),
+		'password'=>md5($this->input->post('password')),
+		'Email'=>$this->input->post('email')
+  );
   
   if($this->form_validation->run() == TRUE)
   {
