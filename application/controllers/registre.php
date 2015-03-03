@@ -39,6 +39,8 @@ $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email')
 		'password'=>md5($this->input->post('password')),
 		'Email'=>$this->input->post('email')
   );
+  $data['recaptcha_html'] = $this->recaptcha->recaptcha_get_html();
+                    $data['page'] = 'registre';
   
   if($this->form_validation->run() == TRUE)
   {
